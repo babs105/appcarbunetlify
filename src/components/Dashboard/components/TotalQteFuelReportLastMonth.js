@@ -79,7 +79,7 @@ let i=0;
             {dataReport.map(row =>{
              return( 
 
-              <Typography variant="h3" key={row.totalRavitaillement}> {row.totalRavitaillement}</Typography>
+              <Typography variant="h3" key={row.totalRavitaillement}> {row.totalRavitaillement} L</Typography>
             
              ) 
             })}

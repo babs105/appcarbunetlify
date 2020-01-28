@@ -71,7 +71,7 @@ return(
 <div>
 <Typography variant="h4"  style={style}>Liste Utilisateur</Typography>
 <Button variant="contained" style={{marginBottom:'20px'}} color="primary" onClick={() => this.addUser()}>
-        Add User
+        Ajouter Utilisateur
 </Button>
 
 <Paper  style={{marginTop:'20px'}}className={classes.root}>  

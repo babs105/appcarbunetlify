@@ -58,6 +58,14 @@ class NavBar extends Component{
        
         history.push('/app/cuve');
     }
+    goToStation = () => {
+       
+        history.push('/app/station');
+    }
+    goToRajoutCuve = () => {
+       
+        history.push('/app/rajout');
+    }
     goToDashboard = () => {
        
     history.push('/app/dashboard');
@@ -97,19 +105,19 @@ goToLogout = () => {
                            ? (
                             <div>
                                 <Button color="inherit" onClick={this.goToDashboard}>
-                                    <DashboardIcon/>Dashboard
+                                    <DashboardIcon/>Tableau de bord
                                 </Button>
                                 <Button color="inherit"  onClick={this.goToUsers}>
-                                     <PeopleAltIcon/>Users
+                                     <PeopleAltIcon/>Utilisateurs
                                 </Button>
-                                <Button color="inherit" onClick={this.goToDashboard}>
+                                <Button color="inherit" onClick={this.goToStation}>
                                     <EvStationIcon/>Station
                                 </Button>
                                 <Button color="inherit" onClick={this.goToCuve}>
                                     <LocalShippingIcon/>Cuve
                                 </Button>
 
-                                <Button color="inherit" onClick={this.goToDashboard}>
+                                <Button color="inherit" onClick={this.goToRajoutCuve}>
                                     <AddCircleIcon/>Rajout Cuve
                                 </Button>
                                 <Button color="inherit" onClick={this.goToVehecule}>

@@ -78,7 +78,7 @@ let i=0;
             {dataReport.map(row =>{
              return( 
 
-              <Typography variant="h3"key={row.totalQteRajout}> {row.totalQteRajout}</Typography>
+              <Typography variant="h3"key={row.totalQteRajout}> {row.totalQteRajout}L</Typography>
             
              ) 
             })}
