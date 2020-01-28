@@ -84,6 +84,7 @@ goToLogout = () => {
 //    deleteAllCookies();
 //    setCookie('APPCARBU_COOKIE','');
    delCookies();
+   setCookie('APPCARBU_COOKIE','');
    this.setState({user:''});
    console.log('DECONNEXION');
   history.push('/');
