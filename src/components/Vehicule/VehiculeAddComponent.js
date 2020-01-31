@@ -96,6 +96,20 @@ class VehiculeAddComponent extends React.Component {
                         </Select>
                         </FormControl> */}
                         {/* </Grid> */}
+                        <Button
+  variant="contained"
+  component="label"
+
+  >
+  <Typography
+      
+      >
+      {"Charger IM"}</Typography>
+
+  <input id={"file-input"} style={{ display: 'none' }} type="file" name="imageFile"
+    
+      />
+</Button>
                         <Grid item md={12} sm={12} xs={12}>
                         <TextField id="immatricule" variant="outlined" label="Immatricule" type="text" name="immatricule" value={this.state.immatricule} onChange={this.onChange} fullWidth required />
                         </Grid>

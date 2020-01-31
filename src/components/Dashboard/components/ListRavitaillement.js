@@ -10,6 +10,7 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';    
 import Typography from '@material-ui/core/Typography';
 import {ravitailleService} from '../../../service/ravitailleService';
+import {ExportXlsx} from '../../Ravitaillement/ExportXlsx';
 import { useState, useEffect } from 'react';
   
 const useStyles = makeStyles({  
@@ -51,14 +52,7 @@ let i=0;
   return (  
       <div>
     <Paper  style={{marginTop:'20px'}}className={classes.root}>  
-    {/* <Typography
-              className={classes.title}
-              color="textSecondary"
-              gutterBottom
-              variant="body2"
-            >
-              Ravitaillements
-            </Typography> */}
+     <ExportXlsx csvData={data} fileName={"ListeRavitaillement"}/>
             <Typography variant="h5" style={{ display: 'flex',justifyContent:'center' ,paddingTop:'30px',marginBottom:'30px'}} >Ravitaillements</Typography>
       <TableContainer className={classes.container}>  
         <Table stickyHeader aria-label="sticky table">  
@@ -82,9 +76,9 @@ let i=0;
                     {row.dateRavitaillement}
                 </TableCell>
                 <TableCell align="center">{row.quantityRavitaillement}</TableCell>
-                <TableCell align="center">{row.vehicule.immatricule}</TableCell>
-                <TableCell align="center">{row.vehicule.kilometrageCurrent}</TableCell>
-                <TableCell align="center">{row.cuve.quantityCurrentCuve}</TableCell>
+                <TableCell align="center">{row.immatricule}</TableCell>
+                <TableCell align="center">{row.kilometrageCurrent}</TableCell>
+                <TableCell align="center">{row.quantityCurrentCuve}</TableCell>
             
           
             </TableRow>

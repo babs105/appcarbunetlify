@@ -32,7 +32,7 @@ class RavitaillementAddComponent extends React.Component {
         this.state ={
             vehicules:[],
             immatricules:'',
-            dateRavitay:new Date(),
+            dateRavitay:"",
             kilometrage: '',
             quantityRavitay:'',
             alertOpen:false,
@@ -58,7 +58,7 @@ class RavitaillementAddComponent extends React.Component {
         let ravitaille = {dateRavitay: this.state.dateRavitay,immatricule: this.state.immatricule, quantityRavitay: this.state.quantityRavitay,kilometrage: this.state.kilometrage};
         ravitailleService.ravitaillerVehicule(ravitaille)
             .then(res => {
-                if(res.id){
+                if(res.error){
                 this.setState({message : 'Véhicule ravitaillé  avec succes'});
                 this.setState({alertOpen : true});
             }else {
@@ -122,7 +122,7 @@ class RavitaillementAddComponent extends React.Component {
                                 variant="outlined"
                                 label="Date Ravitaillement"
                                 name="dateRavitay"
-                                type="datetime-local"
+                                 type="datetime-local"
                                 value={this.state.dateRavitay}
                                 onChange={this.onChange}
                                 className={classes.textField}
