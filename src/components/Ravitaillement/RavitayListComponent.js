@@ -4,6 +4,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Typography from '@material-ui/core/Typography';
 
 import React from 'react';  
+import { Grid } from '@material-ui/core'; 
 import { makeStyles } from '@material-ui/core/styles';  
 import Paper from '@material-ui/core/Paper';  
 import Fab from '@material-ui/core/Fab';
@@ -17,6 +18,7 @@ import TableRow from '@material-ui/core/TableRow';
 import {ravitailleService} from '../../service/ravitailleService';
 import { history } from '../../routage/ExtBrowserRouter';
 import { useState, useEffect } from 'react';
+import Loader from '../loader/Loader';
   
 const useStyles = makeStyles({  
   root: {  
@@ -33,13 +35,16 @@ const style ={
 export default function MatPaginationTable() {  
   const classes = useStyles();  
   const [page, setPage] = React.useState(0);  
-  const [data, setData] = useState([]);   
+  const [data, setData] = useState([]);  
+const[loader,setLoader] = useState(false)
   const [rowsPerPage, setRowsPerPage] = React.useState(5);  
 
   useEffect(() => {    
+          setLoader(true)
             ravitailleService.getAllOperationsCuve()
             .then((res) => {
                 setData(res);
+                setLoader(false)
                 console.log(data);  
             });           
         
@@ -59,6 +64,7 @@ export default function MatPaginationTable() {
 let i=0;
   
   return (  
+   
       <div>
     <Typography variant="h4"  style={style}>Liste Ravitaillements</Typography>
     {/* <Fab color="primary" aria-label="add"> */}
@@ -82,7 +88,20 @@ let i=0;
         </TableRow>
           </TableHead>  
           <TableBody>  
-            {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => {  
+          {loader?
+       <Grid container alignItems="center" justify="center" >
+               
+    <Grid item >
+      <Paper className={classes.paper } >
+       <div className={classes.margin}>
+       <Loader/>
+      
+       </div>
+    </Paper>
+    </Grid>
+   </Grid>:(
+      
+            data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => {  
               return (  
                 <TableRow key={row.id}>
                   <TableCell align="center">{i=i+1}</TableCell>
@@ -98,7 +117,9 @@ let i=0;
             </TableRow>
                  
               );  
-            })}  
+            })  
+
+   )}
           </TableBody>  
         </Table>  
       </TableContainer>  

@@ -4,13 +4,14 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import {Paper,withStyles} from '@material-ui/core'; 
+import {Paper,withStyles,Grid} from '@material-ui/core'; 
 import TableContainer from '@material-ui/core/TableContainer'; 
 import Button from '@material-ui/core/Button';
 import CreateIcon from '@material-ui/icons/Create';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Typography from '@material-ui/core/Typography';
 import {vehiculeService} from '../../service/vehiculeService';
+import Loader from '../loader/Loader';
 const styles = theme => ({
     margin: {
         margin: theme.spacing(8) ,
@@ -27,7 +28,8 @@ class VehiculeListComponent extends Component {
         super(props)
         this.state = {
             vehicules: [],
-            message: null
+            message: null,
+            loader:false
         }
        
     }
@@ -37,9 +39,11 @@ class VehiculeListComponent extends Component {
 
 
     reloadVehiculeList = () => {
+        this.setState({loader:true});
         vehiculeService.getAllVehicules()
             .then((res) => {
                 this.setState({vehicules: res})
+                this.setState({loader:false});
             });
     }
 
@@ -63,6 +67,7 @@ class VehiculeListComponent extends Component {
 render(){
     const { classes } = this.props;
 return(
+    
 <div>
 <Typography variant="h4"  style={style}>Liste des Véhicules</Typography>
 <Button variant="contained" color="primary" onClick={() => this.addVehicule()}>
@@ -81,7 +86,21 @@ return(
         </TableRow>
     </TableHead>
     <TableBody>
-        {this.state.vehicules.map(row => (
+    {this.state.loader?
+       <Grid container alignItems="center" justify="center" >
+               
+       <Grid item >
+      <Paper >
+       <div className={classes.margin}>
+       <Loader/>
+      
+       </div>
+    </Paper>
+    </Grid>
+   </Grid>
+
+    :
+        this.state.vehicules.map(row => (
             <TableRow key={row.id}>
                 <TableCell align="center" component="th" scope="row">
                     {row.immatricule}

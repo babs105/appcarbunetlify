@@ -4,6 +4,7 @@ import {userService} from '../../service/userService'
 import { setCookie} from '../../utils/Cookie';
 import { Paper, withStyles, Grid, TextField, Button, Card, CardContent, Avatar} from '@material-ui/core';
 import { Face, Fingerprint } from '@material-ui/icons';
+import Loader from '../loader/Loader';
 
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 const styles = theme => ({
@@ -38,18 +39,21 @@ class LoginTab extends React.Component {
         this.state ={
             username: '',
             password: '',
-            message: null
+            message: null,
+            loader:false
         }
         
     }
 
     loginUser = (e) => {
         e.preventDefault();
+        this.setState({loader:true});
         let user = {username: this.state.username, password: this.state.password};
         userService.login(user)
             .then(res => {
                 setCookie('APPCARBU_COOKIE',res.sessionCookie);
                 this.setState({message : 'logging successfully.'});
+                this.setState({loader:false});
                 this.props.history.push('/app');
             });
     }
@@ -58,13 +62,29 @@ class LoginTab extends React.Component {
 
     render() {
         const { classes } = this.props;
-        return (
+      return (
+           this.state.loader?
+           <Grid container alignItems="center" style={{marginTop:'95px'}} justify="center" >
+               
+                <Grid item >
+               <Paper className={classes.paper }>
+                <div className={classes.margin}>
+                <Loader/>
+               
+                </div>
+             </Paper>
+             </Grid>
+            </Grid>
+         
+            :
+          ( 
             <Grid container alignItems="center" style={{marginTop:'95px'}} justify="center" >
                
                 <Grid item >
                <Paper className={classes.paper }>
                 <div className={classes.margin}>
-                <form >
+                  
+                <form>
                 <Typography variant="h5" style={{color:'blue', display: 'flex',justifyContent:'center' ,marginBottom:'30px'}} >GESTION CARBURANT SASTRANS
                 </Typography>
                 <Grid container spacing={2} justify="center"  alignItems="center" style={{ marginBottom:'30px'}}>
@@ -98,7 +118,8 @@ class LoginTab extends React.Component {
             </Paper>
             </Grid>
             </Grid>
-        );
-    }
+        )
+        )
+ }
 }
 export default withStyles(styles)(LoginTab);
