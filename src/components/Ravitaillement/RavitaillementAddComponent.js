@@ -134,7 +134,7 @@ class RavitaillementAddComponent extends React.Component {
                     </Grid> 
                     <Grid container justify="center" spacing={3} alignItems="center">
                         <Grid item md={6} sm={4} xs={12}>
-                          <Button variant="contained"  color="primary" onClick={this.ravitaillerVehicule} >Valider</Button>
+                          <Button variant="contained"  color="primary" fullWidth onClick={this.ravitaillerVehicule} >Valider</Button>
                        </Grid>
                     </Grid>
                   

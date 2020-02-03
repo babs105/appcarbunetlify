@@ -96,7 +96,7 @@ class VehiculeAddComponent extends React.Component {
                         </Select>
                         </FormControl> */}
                         {/* </Grid> */}
-                        <Button
+                        {/* <Button
   variant="contained"
   component="label"
 
@@ -109,7 +109,7 @@ class VehiculeAddComponent extends React.Component {
   <input id={"file-input"} style={{ display: 'none' }} type="file" name="imageFile"
     
       />
-</Button>
+</Button> */}
                         <Grid item md={12} sm={12} xs={12}>
                         <TextField id="immatricule" variant="outlined" label="Immatricule" type="text" name="immatricule" value={this.state.immatricule} onChange={this.onChange} fullWidth required />
                         </Grid>
@@ -128,7 +128,7 @@ class VehiculeAddComponent extends React.Component {
                       
                         </Grid>
                         <Grid item md={4} sm={4} xs={4}>
-                        <Button variant="contained"  color="primary" onClick={this.createVehicule} >Ajouter Vehicule</Button>
+                        <Button variant="contained" fullWidth  color="primary" onClick={this.createVehicule} >Ajouter Vehicule</Button>
                         </Grid>
                         <Grid item md={4} sm={4} xs={4}>
                       

@@ -19,14 +19,14 @@ class CuveAddComponent extends React.Component {
         this.state ={
             cuveName: '',
             capacityCuve: '',
-            quantityInitCuve:'',
+            quantityCurrentCuve:'',
             message: null
         }
         
     }
     createCuve = (e) => {
         e.preventDefault();
-        let cuve = {cuveName: this.state.cuveName, capacityCuve: this.state.capacityCuve,quantityInitCuve: this.state.quantityInitCuve};
+        let cuve = {cuveName: this.state.cuveName, capacityCuve: this.state.capacityCuve,quantityCurrentCuve: this.state.quantityCurrentCuve};
        cuveService.createCuve(cuve)
             .then(res => {
                 this.setState({message : 'cuve initialisée avec succes'});
@@ -59,7 +59,7 @@ class CuveAddComponent extends React.Component {
                     
                     
                         <Grid item md={true} sm={true} xs={true}>
-                        <TextField id="quantityInitCuve" variant="outlined" label="Quantité Initiale" type="number" name="quantityInitCuve" value={this.state.quantityInitCuve} onChange={this.onChange} fullWidth  required />
+                        <TextField id="quantityInitCuve" variant="outlined" label="Quantité Initiale" type="number" name="quantityCurrentCuve" value={this.state.quantityInitCuve} onChange={this.onChange} fullWidth  required />
                         </Grid>
                      
                     </Grid>
