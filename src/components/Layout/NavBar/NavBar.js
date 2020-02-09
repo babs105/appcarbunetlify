@@ -45,7 +45,9 @@ class NavBar extends Component{
          if(cookie) {
             userService.loginExistingUser(cookie)
                 .then(data =>{
-                    this.setState({user:data.user});
+                    this.setState({user:data.user},
+                        window.localStorage.setItem("role", data.user.role)
+                        );
             });
          }
       }

@@ -57,10 +57,14 @@ const[loader,setLoader] = useState(false)
     setRowsPerPage(+event.target.value);  
     setPage(0);  
   };
-  const addVehicule=() =>{
+   const addVehicule=() =>{
     window.localStorage.removeItem("immatricule");
     history.push('/app/ravitaillement-vehicule');
-}
+  }
+  const editRavitaillement = (id) =>{
+  window.localStorage.setItem("IdRavitay", id);
+  history.push('/app/edit-ravitaillement');
+ }
 let i=0;
   
   return (  
@@ -109,10 +113,10 @@ let i=0;
                     {row.dateRavitaillement}
                 </TableCell>
                 <TableCell align="center">{row.quantityRavitaillement}</TableCell>
-                <TableCell align="center">{row.vehicule.immatricule}</TableCell>
-                <TableCell align="center">{row.vehicule.kilometrageCurrent}</TableCell>
-                <TableCell align="center">{row.cuve.quantityCurrentCuve}</TableCell>
-                <TableCell align="right" onClick={() => this.editVehicule(row.immatricule)}><CreateIcon /></TableCell>
+                <TableCell align="center">{row.immatricule}</TableCell>
+                <TableCell align="center">{row.kilometrageCurrent}</TableCell>
+                <TableCell align="center">{row.quantityCurrentCuve}</TableCell>
+                <TableCell align="right" onClick={() => editRavitaillement(row.id)}><CreateIcon /></TableCell>
                 <TableCell align="right" onClick={() => this.deleteVehicule(row.immatricule)}><DeleteIcon /></TableCell> 
             </TableRow>
                  

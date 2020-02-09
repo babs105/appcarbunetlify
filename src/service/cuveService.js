@@ -4,6 +4,7 @@ export const cuveService = {
   createCuve,
   getAllCuves,
   getCuveByIdCuve,
+  getCuveById,
   getCuveByCuveName,
   deleteCuveByCuveName
 };
@@ -18,6 +19,10 @@ function getAllCuves() {
   }
   function getCuveByIdCuve(idCuve){
     return axios.get('/cuve/getCuveByIdCuve/' + idCuve).then(handleRegisterResponse)
+      .then(cuve => cuve);
+  }
+  function getCuveById(cuveId){
+    return axios.get('/cuve/getCuveById/' + cuveId).then(handleRegisterResponse)
       .then(cuve => cuve);
   }
   function getCuveByCuveName(cuveName) {

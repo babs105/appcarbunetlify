@@ -34,11 +34,12 @@ class CuveEditComponent extends Component {
     }
 
     loadCuve = () => {
-        cuveService.getCuveByCuveName(window.localStorage.getItem("cuveName"))
+        cuveService.getCuveById(window.localStorage.getItem("cuveId"))
             .then((res) => {
                 let cuve = res;
+                console.log("CUVE",cuve)
                 this.setState({
-                idCuve: cuve.idCuve,
+                idCuve: cuve.id,
                 cuveName: cuve.cuveName,
                 capacityCuve: cuve.capacityCuve,
                 quantityInitCuve: cuve.quantityInitCuve,
@@ -52,12 +53,13 @@ class CuveEditComponent extends Component {
 
     updateCuve = (e) => {
         e.preventDefault();
-        let cuve = {idCuve: this.state.idCuve, cuveName: this.state.cuveName,capacityCuve: this.state.capacityCuve, quantityInitCuve: this.state.quantityInitCuve, quantityCurrentCuve: this.state.quantityCurrentCuve};
+        let cuve = {id: this.state.idCuve, cuveName: this.state.cuveName,capacityCuve: this.state.capacityCuve, quantityInitCuve: this.state.quantityInitCuve, quantityCurrentCuve: this.state.quantityCurrentCuve};
         cuveService.createCuve(cuve)
             .then(res => {
                 this.setState({message : 'Cuve Editied successfully.'});
                 this.props.history.push('/app/cuve');
             });
+           
     }
 
     render() {
@@ -82,7 +84,7 @@ class CuveEditComponent extends Component {
                     <TextField id="quantityInitCuve" variant="outlined" label="Quantité Initiale" type="number" name="quantityInitCuve" value={this.state.quantityInitCuve} onChange={this.onChange} fullWidth  required />
                     </Grid>
                     <Grid item md={true} sm={true} xs={true}>
-                    <TextField id="quantityCurrentCuve" variant="outlined" label="Quantité actuelle" type="number" name="quantityCurrentCuve" value={this.state.quantityCurrentCuve} onChange={this.onChange} fullWidth  required disabled />
+                    <TextField id="quantityCurrentCuve" variant="outlined" label="Quantité actuelle" type="number" name="quantityCurrentCuve" value={this.state.quantityCurrentCuve} onChange={this.onChange} fullWidth  required  />
                     </Grid>
                 </Grid>
                 <Grid container style={{ marginTop: '30px' }}>

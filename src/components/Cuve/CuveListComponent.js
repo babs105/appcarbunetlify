@@ -29,7 +29,8 @@ class CuveListComponent extends Component {
         super(props)
         this.state = {
             cuves: [],
-            message: null
+            message: null,
+            role:"",
         }
        
     }
@@ -39,6 +40,7 @@ class CuveListComponent extends Component {
 
 
     reloadCuveList = () => {
+       this.setState({role:window.localStorage.getItem("role")});
         cuveService.getAllCuves()
             .then((res) => {
                 this.setState({cuves: res})
@@ -46,15 +48,16 @@ class CuveListComponent extends Component {
     }
 
     deleteCuve=(cuveName) =>{
-        cuveService.deleteCuveByCuveName(cuveName)
-           .then(res => {
-               this.setState({message : 'Cuve deleted successfully.'});
-               this.setState({cuves: this.state.cuves.filter(cuve => cuve.cuveName !== cuveName)});
-           })
+        // cuveService.deleteCuveByCuveName(cuveName)
+        //    .then(res => {
+        //        this.setState({message : 'Cuve deleted successfully.'});
+        //        this.setState({cuves: this.state.cuves.filter(cuve => cuve.cuveName !== cuveName)});
+        //    })
     }
 
-    editCuve=(cuveName) =>{
-        window.localStorage.setItem("cuveName", cuveName);
+    editCuve = (id) =>{
+ 
+        window.localStorage.setItem("cuveId", id);
         this.props.history.push('/app/edit-cuve');
     }
 
@@ -92,8 +95,17 @@ return(
                 <TableCell align="center">{row.quantityInitCuve}</TableCell>
                 <TableCell align="center">{row.quantityCurrentCuve}</TableCell>
                 <TableCell align="center">{row.dateCurrentCuve}</TableCell>
-                <TableCell align="right" onClick={() => this.editCuve(row.cuveName)}><CreateIcon /></TableCell>
-                <TableCell align="right" onClick={() => this.deleteCuve(row.cuveName)}><DeleteIcon /></TableCell> 
+                {this.state.role === "Admin" ?
+                 (<div>
+                 <TableCell align="right" onClick={() => this.editCuve(row.id)}><CreateIcon /></TableCell>
+                 <TableCell align="right" onClick={() => this.deleteCuve(row.cuveName)}><DeleteIcon /></TableCell>
+                 </div>
+                 ):
+                 
+               null 
+                 
+                }
+                
             </TableRow>
         ))}
     </TableBody>

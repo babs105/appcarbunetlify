@@ -3,7 +3,8 @@ import axios from '../axios/axios';
 export const ravitailleService = {
   ravitaillerVehicule,
   getAllOperationsCuve,
-  getCuveByIdCuve,
+  getRavitaillementById,
+  createOperation,
   getCuveByCuveName,
   deleteCuveByCuveName
 };
@@ -12,13 +13,18 @@ function ravitaillerVehicule(ravitaille) {
   return axios.post('/operationsCuve/ravitaillerVehicule',ravitaille).then(handleRegisterResponse)
     .then(ravitaille => ravitaille);
 }
+function createOperation(ravitaille) {
+  
+  return axios.post('/operationsCuve/create',ravitaille).then(handleRegisterResponse)
+    .then(ravitaille => ravitaille);
+}
 function getAllOperationsCuve() {
     return axios.get('/operationsCuve/getAllOperationsCuve').then(handleRegisterResponse)
       .then(operations => operations);
   }
-  function getCuveByIdCuve(idCuve){
-    return axios.get('/cuve/getCuveByIdCuve/' + idCuve).then(handleRegisterResponse)
-      .then(cuve => cuve);
+  function getRavitaillementById(idRavitay){
+    return axios.get('/operationsCuve/getRavitaillementById/' + idRavitay).then(handleRegisterResponse)
+      .then(ravitaillement => ravitaillement);
   }
   function getCuveByCuveName(cuveName) {
     return axios.get('/cuve/getCuveByCuveName/'+ cuveName).then(handleRegisterResponse)

@@ -17,6 +17,8 @@ import AddVehicule  from'../components/Vehicule/VehiculeAddComponent';
 
 import RavitaillementList from '../components/Ravitaillement/RavitayListComponent' ;
 import AddRavitaillement from '../components/Ravitaillement/RavitaillementAddComponent' ;
+import EditRavitaillement from '../components/Ravitaillement/RavitaillementEditComponent';
+
 
 import StationList from '../components/Station/StationListComponent';
 import AddStaton from '../components/Station/StationAddComponent';
@@ -49,7 +51,9 @@ const PrivateRoutes = ({ match}) => (
 
 			<Route path="/app/ravitaillement" exact component={RavitaillementList} />
 			<Route path="/app/ravitaillement-vehicule" exact component={AddRavitaillement} />
-			 
+			<Route path="/app/edit-ravitaillement" exact component={EditRavitaillement} />
+
+
 			<Route path="/app/station" exact component={StationList} />
 			<Route path="/app/add-station" exact component={AddStaton} />
 
