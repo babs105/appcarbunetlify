@@ -1,6 +1,9 @@
 import React from 'react';  
+import InputAdornment from "@material-ui/core/InputAdornment";
+import SearchIcon from "@material-ui/icons/Search";
 import { makeStyles } from '@material-ui/core/styles';  
 import Paper from '@material-ui/core/Paper';  
+import { Grid,TextField } from '@material-ui/core';
 import Table from '@material-ui/core/Table';  
 import TableBody from '@material-ui/core/TableBody';  
 import TableCell from '@material-ui/core/TableCell';  
@@ -11,6 +14,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
 import {ravitailleService} from '../../../service/ravitailleService';
 import {ExportXlsx} from '../../Ravitaillement/ExportXlsx';
+import Loader from '../../loader/Loader';
 import { useState, useEffect } from 'react';
   
 const useStyles = makeStyles({  
@@ -28,7 +32,8 @@ const style ={
 export default function MatPaginationTable() {  
   const classes = useStyles();  
   const [page, setPage] = React.useState(0);  
-  const [data, setData] = useState([]);   
+  const [data, setData] = useState([]); 
+  const [loader,setLoader] = useState(false);  
   const [rowsPerPage, setRowsPerPage] = React.useState(5);  
 
   useEffect(() => {    
@@ -46,14 +51,55 @@ export default function MatPaginationTable() {
     setRowsPerPage(+event.target.value);  
     setPage(0);  
   };
- 
+  const onSearchInputChange = (event) => {
+    console.log("Search changed ..." + event.target.value)
+    if (event.target.value) {
+        // this.setState({searchString: event.target.value})
+        ravitailleService.searchRavitaillementByImmatricule(event.target.value)
+        .then((res) => {
+            console.log("result",res);
+            setData(res);
+            setLoader(false)
+            console.log("FOUND",data);  
+        }); 
+    } else {
+      setLoader(true)
+      ravitailleService.getAllOperationsCuve()
+      .then((res) => {
+          setData(res);
+          setLoader(false)
+          console.log(data);  
+      });  
+        
+    }
+   
+};
 let i=0;
   
   return (  
       <div>
+        
     <Paper  style={{marginTop:'20px'}}className={classes.root}>  
-     <ExportXlsx csvData={data} fileName={"ListeRavitaillement"}/>
+     
+            
             <Typography variant="h5" style={{ display: 'flex',justifyContent:'center' ,paddingTop:'30px',marginBottom:'30px'}} >Ravitaillements</Typography>
+            <Grid container alignItems="center" justify="center" >
+   <TextField style={{padding: 24}}
+                            id="searchInput"
+                            placeholder="Rechercher"   
+                            margin="normal"
+                            onChange={onSearchInputChange}
+                            InputProps={{
+                              endAdornment: (
+                                <InputAdornment>
+                                  <SearchIcon />
+                                </InputAdornment>
+                               )
+                              }}
+                            />
+                            <ExportXlsx csvData={data} fileName={"ListeRavitaillement"}/>
+     </Grid>
+      
       <TableContainer className={classes.container}>  
         <Table stickyHeader aria-label="sticky table">  
         <TableHead>  

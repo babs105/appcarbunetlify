@@ -6,6 +6,7 @@ export const ravitailleService = {
   getRavitaillementById,
   createOperation,
   getCuveByCuveName,
+  searchRavitaillementByImmatricule,
   deleteCuveByCuveName
 };
 function ravitaillerVehicule(ravitaille) {
@@ -24,6 +25,10 @@ function getAllOperationsCuve() {
   }
   function getRavitaillementById(idRavitay){
     return axios.get('/operationsCuve/getRavitaillementById/' + idRavitay).then(handleRegisterResponse)
+      .then(ravitaillement => ravitaillement);
+  }
+  function searchRavitaillementByImmatricule(critere){
+    return axios.get('/operationsCuve/searchRavitaillementByImmatricule/' + critere).then(handleRegisterResponse)
       .then(ravitaillement => ravitaillement);
   }
   function getCuveByCuveName(cuveName) {

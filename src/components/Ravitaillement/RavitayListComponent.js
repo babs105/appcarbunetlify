@@ -4,7 +4,11 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Typography from '@material-ui/core/Typography';
 
 import React from 'react';  
-import { Grid } from '@material-ui/core'; 
+import IconButton from "@material-ui/core/IconButton";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import SearchIcon from "@material-ui/icons/Search";
+
+import { Grid,TextField } from '@material-ui/core'; 
 import { makeStyles } from '@material-ui/core/styles';  
 import Paper from '@material-ui/core/Paper';  
 import Fab from '@material-ui/core/Fab';
@@ -36,7 +40,7 @@ export default function MatPaginationTable() {
   const classes = useStyles();  
   const [page, setPage] = React.useState(0);  
   const [data, setData] = useState([]);  
-const[loader,setLoader] = useState(false)
+  const [loader,setLoader] = useState(false)
   const [rowsPerPage, setRowsPerPage] = React.useState(5);  
 
   useEffect(() => {    
@@ -57,7 +61,31 @@ const[loader,setLoader] = useState(false)
     setRowsPerPage(+event.target.value);  
     setPage(0);  
   };
-   const addVehicule=() =>{
+  const onSearchInputChange = (event) => {
+    console.log("Search changed ..." + event.target.value)
+    if (event.target.value) {
+        // this.setState({searchString: event.target.value})
+        ravitailleService.searchRavitaillementByImmatricule(event.target.value)
+        .then((res) => {
+            console.log("result",res);
+            setData(res);
+            setLoader(false)
+            console.log("FOUND",data);  
+        }); 
+    } else {
+      setLoader(true)
+      ravitailleService.getAllOperationsCuve()
+      .then((res) => {
+          setData(res);
+          setLoader(false)
+          console.log(data);  
+      });  
+        
+    }
+   
+};
+
+   const addVehicule =() =>{
     window.localStorage.removeItem("immatricule");
     history.push('/app/ravitaillement-vehicule');
   }
@@ -71,12 +99,27 @@ let i=0;
    
       <div>
     <Typography variant="h4"  style={style}>Liste Ravitaillements</Typography>
-    {/* <Fab color="primary" aria-label="add"> */}
+
     <Button variant="contained" color="primary" onClick={addVehicule}> 
          Ravitailler Véhicule
    </Button>
-  {/* </Fab> */}
-    
+   <Grid container alignItems="center" justify="center" >
+   <TextField style={{padding: 24}}
+                            id="searchInput"
+                            placeholder="Rechercher"   
+                            margin="normal"
+                            onChange={onSearchInputChange}
+                            InputProps={{
+                              endAdornment: (
+                                <InputAdornment>
+                                  <SearchIcon />
+                                </InputAdornment>
+                               )
+                              }}
+                            />
+     </Grid>
+   
+  
     <Paper  style={{marginTop:'20px'}}className={classes.root}>  
       <TableContainer className={classes.container}>  
         <Table stickyHeader aria-label="sticky table">  
