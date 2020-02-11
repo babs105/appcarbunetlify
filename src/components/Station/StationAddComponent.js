@@ -128,7 +128,7 @@ class StationAddComponent extends React.Component {
                 </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                <Button onClick={this.handleClose} color="primary" autoFocus>
+                <Button onClick={this.handleClose} color="primary" fullWidth autoFocus>
                    FERMER
                 </Button>
         </DialogActions>
