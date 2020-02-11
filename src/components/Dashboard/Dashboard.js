@@ -1,7 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';  
 import { Grid } from '@material-ui/core';
-
+import Divider from '@material-ui/core/Divider';
+import Typography from '@material-ui/core/Typography';
 import ListRavitaillement from './components/ListRavitaillement';
 import NombreQuantiteRavitaillementByVehiculePreviousMonth from './components/NumberRavitaillementAndTotalQteLastMonth';
 import NombreQuantiteRavitaillementByVehiculeCurrentMonth from './components/NumberRavitaillementCurrentMonth';
@@ -26,51 +27,31 @@ export default function Dashboard () {
         container
         spacing={4}
       >
+         
          <Grid
           item
-          lg={12}
-          md={12}
+          lg={6}
+          md={6}
           sm={6}
           xl={3}
           xs={12}
-        >
-          RAVITAILLEMENTS
-        </Grid>
-          <Grid
-          item
-          lg={3}
-          sm={6}
-          xl={3}
-          xs={12}
-        >
-          <TotalVehiculeReportLastMonth/>
+        > <Typography variant="h6"style={{ color:'orange'}}>
+         Mois Précédent
+    </Typography>
+    
         </Grid>
         <Grid
           item
-          lg={3}
+          lg={6}
+          md={6}
           sm={6}
           xl={3}
           xs={12}
         >
-          <TotalQteFuelReportLastMonth/>
-        </Grid>
-        <Grid
-          item
-          lg={3}
-          sm={6}
-          xl={3}
-          xs={12}
-        >
-          <TotalVehiculeReportCurrentMonth/>
-        </Grid>
-        <Grid
-          item
-          lg={3}
-          sm={6}
-          xl={3}
-          xs={12}
-        >
-          <TotalQteFuelReportCurrentMonth/>
+          <Typography variant="h6"style={{ color:'green'}}>
+         
+       Mois en Cours
+    </Typography>
         </Grid>
         <Grid
           item
@@ -92,6 +73,45 @@ export default function Dashboard () {
         >
          <NombreQuantiteRavitaillementByVehiculeCurrentMonth/>
         </Grid>
+          <Grid
+          item
+          lg={3}
+          sm={6}
+          xl={3}
+          xs={12}
+        >
+          <TotalVehiculeReportLastMonth/>
+        </Grid>
+        <Grid
+          item
+          lg={3}
+          sm={6}
+          xl={3}
+          xs={12}
+        >
+          <TotalQteFuelReportLastMonth/>
+        </Grid>
+        
+        <Grid
+          item
+          lg={3}
+          sm={6}
+          xl={3}
+          xs={12}
+        >
+         
+          <TotalVehiculeReportCurrentMonth/>
+        </Grid>
+        <Grid
+          item
+          lg={3}
+          sm={6}
+          xl={3}
+          xs={12}
+        >
+          <TotalQteFuelReportCurrentMonth/>
+        </Grid>
+       
         <Grid
           item
           lg={12}
@@ -105,13 +125,28 @@ export default function Dashboard () {
 
         <Grid
           item
-          lg={12}
-          md={12}
+          lg={6}
+          md={6}
+          sm={6}
+          xl={3}
+          xs={12}
+        > <Typography variant="h6"style={{ color:'orange'}}>
+         Mois Précédent
+    </Typography>
+    
+        </Grid>
+        <Grid
+          item
+          lg={6}
+          md={6}
           sm={6}
           xl={3}
           xs={12}
         >
-         DONNEES CUVE
+          <Typography variant="h6"style={{ color:'green'}}>
+         
+       Mois en Cours
+    </Typography>
         </Grid>
         <Grid
           item

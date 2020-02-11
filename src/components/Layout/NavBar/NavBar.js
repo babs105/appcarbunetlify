@@ -4,6 +4,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
+import Avatar from '@material-ui/core/Avatar';
 import MenuIcon from '@material-ui/icons/Menu';
 import {getCookie,setCookie,delCookies } from '../../../utils/Cookie';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
@@ -15,7 +16,8 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 import EvStationIcon from '@material-ui/icons/EvStation';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import { history } from '../../../routage/ExtBrowserRouter';
-import {userService} from '../../../service/userService'
+import {userService} from '../../../service/userService';
+import logo from '../../../../src/static/images/route.png';
 
 
 const style = {
@@ -98,11 +100,9 @@ goToLogout = () => {
         <div>
             <AppBar position="static" style={{marginBottom:'30px'}}>
                 <Toolbar>
-                    <IconButton edge="start" color="inherit" aria-label="Menu">
-                        {/* <MenuIcon /> */}
-                    </IconButton>
+                    <Avatar src={logo}/>
                     <Typography variant="h6"  style={style}>
-                        Gestion Carburant
+                        SASTRANS
                     </Typography>
                         {this.state.user.role === "Admin"
                            ? (
