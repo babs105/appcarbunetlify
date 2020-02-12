@@ -7,7 +7,9 @@ export const ravitailleService = {
   createOperation,
   getCuveByCuveName,
   searchRavitaillementByImmatricule,
-  deleteCuveByCuveName
+  deleteCuveByCuveName,
+  getAllOperationsCuveInPreviousMonth,
+  getAllOperationsCuveInCurrentMonth
 };
 function ravitaillerVehicule(ravitaille) {
   
@@ -21,6 +23,14 @@ function createOperation(ravitaille) {
 }
 function getAllOperationsCuve() {
     return axios.get('/operationsCuve/getAllOperationsCuve').then(handleRegisterResponse)
+      .then(operations => operations);
+  }
+function getAllOperationsCuveInPreviousMonth() {
+    return axios.get('/operationsCuve/getAllOperationsCuveInInPreviousMonth').then(handleRegisterResponse)
+      .then(operations => operations);
+  }
+  function getAllOperationsCuveInCurrentMonth() {
+    return axios.get('/operationsCuve/getAllOperationsCuveInCurrentMonth').then(handleRegisterResponse)
       .then(operations => operations);
   }
   function getRavitaillementById(idRavitay){

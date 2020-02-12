@@ -6,6 +6,7 @@ export const dashboardService = {
     getTotalRavitaillementAndVehiculeInPreviousMonth,
     getTotalRavitaillementAndVehiculeInCurrentMonth,
     getNumberRajoutAndTotalQteInCurrentMonth,
+    getNumberRajoutAndTotalQteInPreviousMonth
 };
 
 function getRavitaillementByVehiculeInPreviousMonth() {
@@ -27,6 +28,10 @@ function getRavitaillementByVehiculeInPreviousMonth() {
   }
   function getNumberRajoutAndTotalQteInCurrentMonth(){
     return axios.get('/rajout/getNumberRajoutAndTotalQteInCurrentMonth').then(handleRegisterResponse)
+    .then(results => results);
+  }
+  function getNumberRajoutAndTotalQteInPreviousMonth(){
+    return axios.get('/rajout/getNumberRajoutAndTotalQteInPreviousMonth').then(handleRegisterResponse)
     .then(results => results);
   }
 

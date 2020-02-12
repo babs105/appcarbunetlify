@@ -4,6 +4,8 @@ import { Grid } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import ListRavitaillement from './components/ListRavitaillement';
+import ListRavitaillementCurrentMonth from './components/ListRavitaillementCurrentMonth';
+import ListRavitaillementPreviousMonth from './components/ListRavitaillementPreviousMonth';
 import NombreQuantiteRavitaillementByVehiculePreviousMonth from './components/NumberRavitaillementAndTotalQteLastMonth';
 import NombreQuantiteRavitaillementByVehiculeCurrentMonth from './components/NumberRavitaillementCurrentMonth';
 import TotalVehiculeReportLastMonth from './components/TotalVehiculeReportLastMonth';
@@ -12,6 +14,10 @@ import TotalVehiculeReportCurrentMonth from './components/TotalVehiculeReportCur
 import TotalQteFuelReportCurrentMonth from './components/TotalQteFuelReportCurrentMonth';
 import TotalRajoutCurrentMonth from './components/NumberRajoutInCurrentMonth';
 import TotalQteRajoutCurrentMonth from './components/QteTotalRajoutInCurrentMonth'
+import TotalRajoutPreviousMonth from './components/NumberRajoutInPreviousMonth';
+import TotalQteRajoutPreviousMonth from './components/QteTotalRajoutInPreviousMonth'
+
+
 const useStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(4)
@@ -115,14 +121,34 @@ export default function Dashboard () {
         <Grid
           item
           lg={12}
-          md={6}
-          sm={6}
+          md={12}
+          sm={12}
           xl={3}
           xs={12}
         >
-            <ListRavitaillement/> 
+            {/* <ListRavitaillement/>  */}
+        </Grid>
+        <Grid
+          item
+          lg={12}
+          md={12}
+          sm={12}
+          xl={3}
+          xs={12}
+        >
+           <ListRavitaillementCurrentMonth/> 
         </Grid>
 
+        <Grid
+          item
+          lg={12}
+          md={12}
+          sm={12}
+          xl={3}
+          xs={12}
+        >
+           <ListRavitaillementPreviousMonth/> 
+        </Grid>
         <Grid
           item
           lg={6}
@@ -156,7 +182,7 @@ export default function Dashboard () {
           xl={3}
           xs={12}
         >
-           
+            <TotalRajoutPreviousMonth/>
         </Grid>
         <Grid
           item
@@ -165,7 +191,7 @@ export default function Dashboard () {
           xl={9}
           xs={12}
         >
-         
+        <TotalQteRajoutPreviousMonth/>
         </Grid>
         <Grid
           item

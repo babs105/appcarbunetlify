@@ -89,7 +89,7 @@ return(
     {this.state.loader?
        <Grid container alignItems="center" justify="center" >
                
-       <Grid item >
+    <Grid item >
       <Paper >
        <div className={classes.margin}>
        <Loader/>
