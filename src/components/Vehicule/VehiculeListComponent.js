@@ -83,6 +83,7 @@ return(
             <TableCell align="center">kilometrage</TableCell>
             <TableCell align="center">Capacité Réservoir</TableCell>
             <TableCell align="center">Date</TableCell>
+            {/* <TableCell align="center">Photo</TableCell> */}
         </TableRow>
     </TableHead>
     <TableBody>
@@ -108,6 +109,7 @@ return(
                 <TableCell align="center">{row.kilometrageCurrent}</TableCell>
                 <TableCell align="center">{row.capacityReservoir}</TableCell>
                 <TableCell align="center">{row.dateCreated}</TableCell>
+    {/* <TableCell align="center"> <img src={`data:image/*;base64,${row.imageString}`}/></TableCell> */}
                 <TableCell align="right" onClick={() => this.editVehicule(row.immatricule)}><CreateIcon /></TableCell>
                 <TableCell align="right" onClick={() => this.deleteVehicule(row.immatricule)}><DeleteIcon /></TableCell> 
             </TableRow>

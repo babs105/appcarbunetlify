@@ -80,7 +80,7 @@ return(
         <TableRow>
             <TableCell align="center">Cuve </TableCell>
             <TableCell align="center">Capacité Cuve</TableCell>
-            <TableCell align="center">Quantité initiale</TableCell>
+            {/* <TableCell align="center">Quantité initiale</TableCell> */}
             <TableCell align="center">Quantité actuelle</TableCell>
             <TableCell align="center">Date</TableCell>
         </TableRow>
@@ -92,7 +92,7 @@ return(
                     {row.cuveName}
                 </TableCell>
                 <TableCell align="center">{row.capacityCuve}</TableCell>
-                <TableCell align="center">{row.quantityInitCuve}</TableCell>
+                {/* <TableCell align="center">{row.quantityInitCuve}</TableCell> */}
                 <TableCell align="center">{row.quantityCurrentCuve}</TableCell>
                 <TableCell align="center">{row.dateCurrentCuve}</TableCell>
                 {this.state.role === "Admin" ?

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 import AppRouter from './routage/AppRouter';
-import NavBar from './components/Layout/NavBar/NavBar';
+
 
 
 class App extends Component {

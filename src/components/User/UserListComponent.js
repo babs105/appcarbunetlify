@@ -79,21 +79,21 @@ return(
         <Table stickyHeader aria-label="sticky table">  
     <TableHead>
         <TableRow>
-            <TableCell>Id</TableCell>
-            <TableCell>FirstName</TableCell>
-            <TableCell align="center">LastName</TableCell>
-            <TableCell align="center">UserName</TableCell>
-            <TableCell align="center">Email</TableCell>
-            <TableCell align="center">Role</TableCell>
-            <TableCell align="center">Actions</TableCell>
+            {/* <TableCell>Id</TableCell> */}
+            <TableCell align="center">PRENOM</TableCell>
+            <TableCell align="center">NOM</TableCell>
+            <TableCell align="center">USERNAME</TableCell>
+            <TableCell align="center">EMAIL</TableCell>
+            <TableCell align="center">ROLE</TableCell>
+            <TableCell align="right">ACTIONS</TableCell>
         </TableRow>
     </TableHead>
     <TableBody>
         {this.state.users.map(row => (
             <TableRow key={row.id}>
-                <TableCell component="th" scope="row">
+                {/* <TableCell component="th" scope="row">
                     {row.id}
-                </TableCell>
+                </TableCell> */}
                 <TableCell align="center">{row.firstName}</TableCell>
                 <TableCell align="center">{row.lastName}</TableCell>
                 <TableCell align="center">{row.username}</TableCell>

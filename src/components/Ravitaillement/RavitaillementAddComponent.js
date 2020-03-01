@@ -59,7 +59,7 @@ class RavitaillementAddComponent extends React.Component {
         ravitailleService.ravitaillerVehicule(ravitaille)
             .then(res => {
                 if(res.error){
-                this.setState({message : 'Véhicule ravitaillé  avec succes'});
+                this.setState({message : 'Ravitaillement reussi'});
                 this.setState({alertOpen : true});
             }else {
                     this.setState({message : 'Ravitaillement échoué'});

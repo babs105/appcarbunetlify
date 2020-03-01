@@ -18,7 +18,9 @@ const authentication = () =>
 class AppRouter extends Component {
 	render() {
 		return (
-		    <div style={style}>
+			<div
+			  style={style}
+			>
 					
 						<ExtBrowserRouter>
 							<Switch>	

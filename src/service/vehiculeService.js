@@ -4,7 +4,8 @@ export const vehiculeService = {
   createVehicule,
   getAllVehicules,
   getVehiculeByImmmatricule,
-  deleteVehiculeByImmmatricule
+  deleteVehiculeByImmmatricule,
+  // upload
 };
 function createVehicule(vehicule) {
   // const requestOptions = user;
@@ -24,6 +25,11 @@ function getAllVehicules() {
     return axios.delete('/vehicule/deleteVehiculeByImmmatricule/'+ immmatricule).then(handleRegisterResponse)
       .then(vehicule => vehicule);
   }
+  // function upload(image) {
+  //   // const requestOptions = user;
+  //   return axios.post('/vehicule/upload', image).then(handleRegisterResponse)
+  //     .then(data => data);
+  // }
 function handleRegisterResponse(response) {
   const { data } = response;
   if (response.status === 401) {
