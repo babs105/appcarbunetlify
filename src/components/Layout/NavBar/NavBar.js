@@ -23,7 +23,7 @@ import {userService} from '../../../service/userService';
 import logo from '../../../../src/static/images/route.png';
 import Drawer from '@material-ui/core/Drawer';
 
-const drawerWidth = 200;
+const drawerWidth = 225;
 const styles = theme => ({
   root: {
   
