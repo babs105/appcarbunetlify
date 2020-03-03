@@ -20,7 +20,7 @@ import TotalQteRajoutPreviousMonth from './components/QteTotalRajoutInPreviousMo
 
 const useStyles = makeStyles(theme => ({
   root: {
-    padding: theme.spacing(4)
+    padding: theme.spacing(3)
   }
 }));
 
@@ -28,45 +28,25 @@ export default function Dashboard () {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div
+    //  className={classes.root}
+     >
       <Grid
         container
-        spacing={4}
+        spacing={5}
       >
-         
-         <Grid
+      
+        <Grid
           item
           lg={6}
           md={6}
           sm={6}
           xl={3}
           xs={12}
-        > <Typography variant="h6"style={{ color:'orange'}}>
+        >
+          <Typography variant="h6"style={{ color:'orange'}}>
          Mois Précédent
     </Typography>
-    
-        </Grid>
-        <Grid
-          item
-          lg={6}
-          md={6}
-          sm={6}
-          xl={3}
-          xs={12}
-        >
-          <Typography variant="h6"style={{ color:'green'}}>
-         
-       Mois en Cours
-    </Typography>
-        </Grid>
-        <Grid
-          item
-          lg={6}
-          md={6}
-          sm={6}
-          xl={3}
-          xs={12}
-        >
           <NombreQuantiteRavitaillementByVehiculePreviousMonth/>
         </Grid>
         <Grid
@@ -77,6 +57,9 @@ export default function Dashboard () {
           xl={3}
           xs={12}
         >
+        <Typography variant="h6"style={{ color:'green'}}>
+         Mois en Cours
+      </Typography>
          <NombreQuantiteRavitaillementByVehiculeCurrentMonth/>
         </Grid>
           <Grid
@@ -149,77 +132,71 @@ export default function Dashboard () {
         >
            <ListRavitaillementPreviousMonth/> 
         </Grid>
+         <Grid item
+          lg={6}
+          md={6}
+          sm={6}
+          xl={12}
+          xs={12}>
+             
+            <Grid item
+                lg={6}
+                md={3}
+                sm={6}
+                xs={12}
+               >
+               <Typography variant="h6"style={{ color:'orange'}}>
+                Mois Précédent
+                </Typography>
+               <TotalRajoutPreviousMonth/>
+           </Grid>
+           <Grid item
+            lg={6}
+            md={3}
+            sm={6}
+            xs={12}
+            >
+            <TotalQteRajoutPreviousMonth/>
+           </Grid>
+      </Grid>
+
         <Grid
           item
           lg={6}
           md={6}
           sm={6}
-          xl={3}
-          xs={12}
-        > <Typography variant="h6"style={{ color:'orange'}}>
-         Mois Précédent
-    </Typography>
-    
+          xl={12}
+          xs={12}> 
+             
+                <Grid item
+                lg={6}
+                md={3}
+                sm={6}
+                xs={12}
+              >
+               <Typography variant="h6"style={{ color:'green'}}>
+                   Mois en Cours
+                </Typography>     
+              <TotalRajoutCurrentMonth/>
+              </Grid>
+              <Grid item
+                lg={6}
+                md={3}
+                sm={6}
+                xs={12}
+              >
+            <TotalQteRajoutCurrentMonth/>
+            </Grid>
         </Grid>
-        <Grid
-          item
-          lg={6}
-          md={6}
-          sm={6}
-          xl={3}
-          xs={12}
-        >
-          <Typography variant="h6"style={{ color:'green'}}>
-         
-       Mois en Cours
-    </Typography>
-        </Grid>
-        <Grid
-          item
-          lg={3}
-          md={6}
-          sm={6}
-          xl={3}
-          xs={12}
-        >
-            <TotalRajoutPreviousMonth/>
-        </Grid>
-        <Grid
-          item
-          lg={3}
-          md={12}
-          xl={9}
-          xs={12}
-        >
-        <TotalQteRajoutPreviousMonth/>
-        </Grid>
-        <Grid
+        {/* <Grid
           item
           lg={3}
           md={6}
           xl={3}
-          xs={12}
-        >
-           <TotalRajoutCurrentMonth/>
-        </Grid>
-        <Grid
-          item
-          lg={3}
-          md={6}
-          xl={3}
-          xs={12}
-        >
-       <TotalQteRajoutCurrentMonth/>
-        </Grid>
-        <Grid
-          item
-          lg={8}
-          md={12}
-          xl={9}
           xs={12}
         >
             
-        </Grid>
+        </Grid> */}
       </Grid>
     </div>
   );
