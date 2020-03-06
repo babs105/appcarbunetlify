@@ -65,6 +65,7 @@ export default function Dashboard () {
           <Grid
           item
           lg={3}
+          md={3}
           sm={6}
           xl={3}
           xs={12}
@@ -74,6 +75,7 @@ export default function Dashboard () {
         <Grid
           item
           lg={3}
+          md={3}
           sm={6}
           xl={3}
           xs={12}
@@ -84,6 +86,7 @@ export default function Dashboard () {
         <Grid
           item
           lg={3}
+          md={3}
           sm={6}
           xl={3}
           xs={12}
@@ -94,6 +97,7 @@ export default function Dashboard () {
         <Grid
           item
           lg={3}
+          md={3}
           sm={6}
           xl={3}
           xs={12}
