@@ -54,6 +54,8 @@ class LoginTab extends React.Component {
                 setCookie('APPCARBU_COOKIE',res.sessionCookie);
                 this.setState({message : 'logging successfully.'});
                 this.setState({loader:false});
+                window.localStorage.setItem("idUser", res.user.id);
+
                 this.props.history.push('/app');
             });
     }

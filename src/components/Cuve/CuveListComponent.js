@@ -67,6 +67,7 @@ class CuveListComponent extends Component {
     }
 render(){
     const { classes } = this.props;
+    
 return(
 <div>
 <Typography variant="h4"  style={style}>Cuve List</Typography>

@@ -71,11 +71,9 @@ class NavBar extends Component{
         this.setState(state => ({ mobileOpen: !state.mobileOpen }));
       };
 
-      
 
     componentDidMount(){
     this.getLoggedUser();
-
     }
      getLoggedUser = () =>{
         let cookie =  getCookie('APPCARBU_COOKIE');
@@ -83,23 +81,21 @@ class NavBar extends Component{
          if(cookie) {
             userService.loginExistingUser(cookie)
                 .then(data =>{
-                    this.setState({user:data.user},
-                        window.localStorage.setItem("role", data.user.role)
+                    this.setState(
+                      {user:data.user},
                         );
             });
          }
       }
-      
+
     goToUsers = () => {
-       
-            history.push('/app/users');
+       history.push('/app/users');
       }
+
     goToCuve = () => {
-       
         history.push('/app/cuve');
     }
     goToStation = () => {
-       
         history.push('/app/station');
     }
     goToRajoutCuve = () => {
@@ -121,11 +117,10 @@ class NavBar extends Component{
 }
 goToLogout = () => {
 
-//    deleteAllCookies();
-//    setCookie('APPCARBU_COOKIE','');
    delCookies();
    setCookie('APPCARBU_COOKIE','');
    this.setState({user:''});
+   window.localStorage.removeItem('idUser');
    console.log('DECONNEXION');
   history.push('/');
 

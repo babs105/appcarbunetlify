@@ -36,12 +36,18 @@ class RavitaillementAddComponent extends React.Component {
             kilometrage: '',
             quantityRavitay:'',
             alertOpen:false,
-            message: null
+            message: null,
+            idUser:''
         }
         
     }
     componentDidMount() {
            this.reloadVehiculeList();
+           this.setState(
+               {idUser : window.localStorage.getItem('idUser')}
+               );
+           
+
     }
 
     reloadVehiculeList = () => {
@@ -55,7 +61,14 @@ class RavitaillementAddComponent extends React.Component {
     }
     ravitaillerVehicule = (e) => {
         e.preventDefault();
-        let ravitaille = {dateRavitay: this.state.dateRavitay,immatricule: this.state.immatricule, quantityRavitay: this.state.quantityRavitay,kilometrage: this.state.kilometrage};
+        let ravitaille = 
+           {
+            dateRavitay: this.state.dateRavitay,
+            immatricule: this.state.immatricule,
+             quantityRavitay: this.state.quantityRavitay,
+             kilometrage: this.state.kilometrage,
+             idUser:this.state.idUser
+            };
         ravitailleService.ravitaillerVehicule(ravitaille)
             .then(res => {
                 if(res.error){

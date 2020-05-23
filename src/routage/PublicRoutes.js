@@ -4,7 +4,7 @@ import Register from '../components/Register/Register' ;
 import Login from '../components/Login/LoginForm' ;
 import Container from '@material-ui/core/Container';
 
-const PublicRoutes = ({ match }) => (
+const PublicRoutes = () => (
 	<Fragment>
 		<Container>
 		<Switch>

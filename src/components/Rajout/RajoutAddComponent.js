@@ -67,7 +67,12 @@ class RajoutAddComponent extends React.Component {
     }
     rajouterCuve = (e) => {
         e.preventDefault();
-        let rajout = {dateRajout: this.state.dateRajout,qteRajout: this.state.qteRajout, cuveName: this.state.cuveName,stationServiceName: this.state.stationServiceName};
+        let rajout = {
+            dateRajout: this.state.dateRajout,
+            qteRajout: this.state.qteRajout, 
+            cuveName: this.state.cuveName,
+            stationServiceName: this.state.stationServiceName
+        };
         rajoutService.rajouterCuve(rajout)
             .then(res => {
                 if(res.id){

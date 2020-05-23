@@ -30,9 +30,9 @@ import ListRajout from '../components/Rajout/RajoutListComponent';
 
 
 
-const PrivateRoutes = ({ match}) => (
+const PrivateRoutes = () => (
 	<Fragment>
-	 <NavBar/>
+	 <NavBar/> 
 	<Container>
 		<Switch>
 			<Route path="/app/users" exact component={UserList} />

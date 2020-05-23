@@ -8,7 +8,8 @@ import ExtBrowserRouter from './ExtBrowserRouter';
 
 
 const authentication = () =>
-	getCookie('APPCARBU_COOKIE') ? (
+	getCookie('APPCARBU_COOKIE') 
+	? (
 		// <Redirect to="/app" />
 		<PrivateRoutes/>
 	) : (
@@ -21,8 +22,7 @@ class AppRouter extends Component {
 			<div
 			  style={style}
 			>
-					
-						<ExtBrowserRouter>
+						<ExtBrowserRouter>	
 							<Switch>	
 								<Route path="/app" component={authentication} />
 								<Route  render={authentication} />
