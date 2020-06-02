@@ -40,6 +40,7 @@ export default function MatPaginationTable() {
             ravitailleService.getAllOperationsCuveInCurrentMonth()
             .then((res) => {
                 setData(res);
+                console.log("response",res);
             });           
         
 }, []);   
