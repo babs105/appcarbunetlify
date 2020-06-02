@@ -109,7 +109,9 @@ let i=0;
             <TableCell align="center">QUANTITE RAVITAILLEE</TableCell>
             <TableCell align="center">IMMATRICULE</TableCell>
             <TableCell align="center">KILOMETRAGE </TableCell>
-            <TableCell align="center">QUANTITE CUVE</TableCell>
+            <TableCell align="center">STATUT</TableCell>
+            {/* <TableCell align="center">QUANTITE CUVE</TableCell> */}
+            <TableCell align="center">CHAUFFEUR</TableCell>
 
         </TableRow>
           </TableHead>  
@@ -124,7 +126,9 @@ let i=0;
                 <TableCell align="center">{row.quantityRavitaillement}</TableCell>
                 <TableCell align="center">{row.immatricule}</TableCell>
                 <TableCell align="center">{row.kilometrageCurrent}</TableCell>
-                <TableCell align="center">{row.quantityCurrentCuve}</TableCell>
+                <TableCell align="center">{row.vehicule.statut}</TableCell>
+                <TableCell align="center">{row.chauffeur}</TableCell>
+
             
           
             </TableRow>

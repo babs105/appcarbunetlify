@@ -62,7 +62,7 @@ class CuveListComponent extends Component {
     }
 
     addCuve=() =>{
-        window.localStorage.removeItem("cuveName");
+        window.localStorage.removeItem("cuveId");
         this.props.history.push('/app/add-cuve');
     }
 render(){
@@ -70,7 +70,7 @@ render(){
     
 return(
 <div>
-<Typography variant="h4"  style={style}>Cuve List</Typography>
+<Typography variant="h4"  style={style}>Etat Cuve </Typography>
 <Button variant="contained" color="primary" onClick={() => this.addCuve()}>
       Créer Cuve
 </Button>

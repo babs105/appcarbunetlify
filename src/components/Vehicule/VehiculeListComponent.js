@@ -80,6 +80,7 @@ return(
     <TableHead>
         <TableRow>
             <TableCell align="center">Immatricule </TableCell>
+            <TableCell align="center">Statut </TableCell>
             <TableCell align="center">kilometrage</TableCell>
             <TableCell align="center">Capacité Réservoir</TableCell>
             <TableCell align="center">Date</TableCell>
@@ -106,6 +107,7 @@ return(
                 <TableCell align="center" component="th" scope="row">
                     {row.immatricule}
                 </TableCell>
+                <TableCell align="center">{row.statut}</TableCell>
                 <TableCell align="center">{row.kilometrageCurrent}</TableCell>
                 <TableCell align="center">{row.capacityReservoir}</TableCell>
                 <TableCell align="center">{row.dateCreated}</TableCell>

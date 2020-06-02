@@ -48,6 +48,7 @@ class VehiculeAddComponent extends React.Component {
             immatricule:'',
             kilometrageInitial: '',
             capacityReservoir:'',
+            statut:'',
             alertOpen:false,
             selected:'IN',
             // file:null,
@@ -72,25 +73,29 @@ class VehiculeAddComponent extends React.Component {
     }
     createVehicule = (e) => {
         e.preventDefault();
-        let vehicule = {cuveName:this.state.cuveName,immatricule: this.state.immatricule, capacityReservoir: this.state.capacityReservoir,kilometrageInitial: this.state.kilometrageInitial
+        let vehicule = {
+            cuveName:this.state.cuveName,
+            immatricule: this.state.immatricule,
+             capacityReservoir: this.state.capacityReservoir,
+             statut:this.state.statut,
+             kilometrageInitial: this.state.kilometrageInitial
             // ,idVehicule:this.state.idVehicule
         };
         vehiculeService.createVehicule(vehicule)
             .then(res => {
-                if(res.vehicule){
+                if(res.error){
+                 console.log("ERROR TO ADD VEHICULE");
+                this.setState({message : 'Echec Ajout vehicule'});
+                this.setState({alertOpen : true});
 
+               }else{
                 console.log("SUCCESS TO ADD VEHICULE");
                 this.setState({message : 'Ajout vehicule reussi'});
                 this.setState({alertOpen : true});
-               }else{
-                console.log("ERROR TO ADD VEHICULE");
-                this.setState({message : 'Echec Ajout vehicule'});
-                this.setState({alertOpen : true});
-            
+
                }
             });
-       //  console.log("vehicule",vehicule);
-       
+       //console.log("vehicule",vehicule);
     }
 
     handleClose = () => {
@@ -169,6 +174,36 @@ class VehiculeAddComponent extends React.Component {
                         </Grid>
                         <Grid item md={12} sm={12} xs={12}>
                         <TextField id="immatricule" variant="outlined" label="Immatricule" type="text" name="immatricule" value={this.state.immatricule} onChange={this.onChange} fullWidth required />
+                        </Grid>
+                        <Grid item md={12} sm={12} xs={12}>
+                        <FormControl  className={classes.formControl}>
+                                <InputLabel  id='roleId'>Statut</InputLabel>
+                                <Select   
+                                    name='statut'
+                                    id='statut'  
+                                    value={this.state.statut} 
+                                    onChange={this.onChange}
+                                    >
+                                         <MenuItem
+                                                value={"patrouille"}>Patrouille
+                                            </MenuItem>
+                                            <MenuItem
+                                                value={"Remorque"}>Remorque
+                                            </MenuItem>
+                                            <MenuItem
+                                                value={"Passage"}>Passage
+                                            </MenuItem>
+                                            <MenuItem
+                                                value={"coordination"}>Coordination
+                                            </MenuItem>
+                                            <MenuItem
+                                                value={"staff"}>Staff
+                                            </MenuItem>
+                                            <MenuItem
+                                                value={"autres"}>Autres
+                                            </MenuItem>
+                            </Select>
+                        </FormControl> 
                         </Grid>
                         <Grid item md={12} sm={12} xs={12}>
                         <TextField id="kilometrageInitial" variant="outlined" label="Kilometrage " type="number" name="kilometrageInitial" value={this.state.kilometrageInitial} onChange={this.onChange} fullWidth  required />

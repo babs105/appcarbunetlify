@@ -130,14 +130,16 @@ let i=0;
         <TableCell align="center">N°: </TableCell>
             <TableCell align="center">DATE  </TableCell>
             <TableCell align="center">QUANTITE RAVITAILLEE</TableCell>
+            <TableCell align="center">QTE CUVE</TableCell>
             <TableCell align="center">IMMATRICULE</TableCell>
             <TableCell align="center">KILOMETRAGE </TableCell>
-            <TableCell align="center">QUANTITE CUVE</TableCell>
+            <TableCell align="center">CHAUFFEUR</TableCell>
+            
             <TableCell align="center">ACTIONS </TableCell>
         </TableRow>
           </TableHead>  
           <TableBody>  
-          {loader?
+          {loader ?
        <Grid container alignItems="center" justify="center" >
                
     <Grid item >
@@ -158,9 +160,11 @@ let i=0;
                     {row.dateRavitaillement}
                 </TableCell>
                 <TableCell align="center">{row.quantityRavitaillement}</TableCell>
+                <TableCell align="center">{row.quantityCurrentCuve}</TableCell>
                 <TableCell align="center">{row.immatricule}</TableCell>
                 <TableCell align="center">{row.kilometrageCurrent}</TableCell>
-                <TableCell align="center">{row.quantityCurrentCuve}</TableCell>
+                <TableCell align="center">{row.chauffeur}</TableCell>
+                
                 <TableCell align="right" onClick={() => editRavitaillement(row.id)}><CreateIcon /></TableCell>
                 <TableCell align="right" onClick={() => this.deleteVehicule(row.immatricule)}><DeleteIcon /></TableCell> 
             </TableRow>

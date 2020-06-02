@@ -34,6 +34,7 @@ class RavitaillementAddComponent extends React.Component {
             immatricules:'',
             dateRavitay:"",
             kilometrage: '',
+            chauffeur:'',
             quantityRavitay:'',
             alertOpen:false,
             message: null,
@@ -65,9 +66,10 @@ class RavitaillementAddComponent extends React.Component {
            {
             dateRavitay: this.state.dateRavitay,
             immatricule: this.state.immatricule,
-             quantityRavitay: this.state.quantityRavitay,
-             kilometrage: this.state.kilometrage,
-             idUser:this.state.idUser
+            quantityRavitay: this.state.quantityRavitay,
+            kilometrage: this.state.kilometrage,
+            chauffeur: this.state.chauffeur,
+            idUser:this.state.idUser
             };
         ravitailleService.ravitaillerVehicule(ravitaille)
             .then(res => {
@@ -81,7 +83,7 @@ class RavitaillementAddComponent extends React.Component {
                 // 
                 
             });
-        console.log("ravitaille",ravitaille);
+      //  console.log("ravitaille",ravitaille);
        
     }
     handleClose= () => {
@@ -127,7 +129,24 @@ class RavitaillementAddComponent extends React.Component {
                         </Grid>
                     
                         <Grid item md={12} sm={12} xs={12}>
-                        <TextField id="quantityRavitay" variant="outlined" label="Quantité Ravitaillée" type="number" name="quantityRavitay" value={this.state.quantityRavitay} onChange={this.onChange} fullWidth  required />
+                        <TextField id="quantityRavitay" 
+                                     variant="outlined"
+                                     label="Quantité Ravitaillée" 
+                                     type="number"
+                                    name="quantityRavitay" 
+                                    value={this.state.quantityRavitay} 
+                                    onChange={this.onChange} 
+                                    fullWidth required />
+                        </Grid>
+                        <Grid item md={12} sm={12} xs={12}>
+                        <TextField id="chauffeur" 
+                                    variant="outlined"
+                                    label="Prenom Nom Chauffeur" 
+                                    type="text"
+                                    name="chauffeur" 
+                                    value={this.state.chauffeur} 
+                                    onChange={this.onChange} 
+                                    fullWidth required />
                         </Grid>
                         <Grid item md={12} sm={12} xs={12}>
                         <TextField
