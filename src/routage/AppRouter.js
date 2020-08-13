@@ -1,12 +1,9 @@
 import React, {Component} from 'react';
-import {Route, Switch} from 'react-router-dom';
+import {BrowserRouter,Route, Switch} from 'react-router-dom';
 import PublicRoutes from './PublicRoutes';
 import PrivateRoutes from './PrivateRoutes';
 import { getCookie } from '../utils/Cookie';
-import ExtBrowserRouter from './ExtBrowserRouter'; 
-
-
-
+// import ExtBrowserRouter from './ExtBrowserRouter'; 
 const authentication = () =>
 	getCookie('APPCARBU_COOKIE') 
 	? (
@@ -22,18 +19,18 @@ class AppRouter extends Component {
 			<div
 			  style={style}
 			>
-						<ExtBrowserRouter>	
+						<BrowserRouter>	
 							<Switch>	
 								<Route path="/app" component={authentication} />
 								<Route  render={authentication} />
 							</Switch>
-						</ExtBrowserRouter>		
+						</BrowserRouter>		
            </div>
 			
 		);
 	}
 }
 const style={
-    marginTop:'20px'
+    marginTop:'0px'
 }
 export default AppRouter;

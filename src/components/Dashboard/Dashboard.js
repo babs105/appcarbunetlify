@@ -31,85 +31,36 @@ export default function Dashboard () {
     <div
     //  className={classes.root}
      >
-      <Grid
-        container
-        spacing={5}
-      >
-      
-        <Grid
-          item
-          lg={6}
-          md={6}
-          sm={6}
-          xl={3}
-          xs={12}
-        >
+      <Grid container spacing={5}>
+  
+        <Grid item lg={6} md={6} sm={12} xl={6} xs={12}>
           <Typography variant="h6"style={{ color:'orange'}}>
-         Mois Précédent
-    </Typography>
+             Mois Précédent
+          </Typography>
           <NombreQuantiteRavitaillementByVehiculePreviousMonth/>
         </Grid>
-        <Grid
-          item
-          lg={6}
-          md={6}
-          sm={6}
-          xl={3}
-          xs={12}
-        >
-        <Typography variant="h6"style={{ color:'green'}}>
-         Mois en Cours
-      </Typography>
-         <NombreQuantiteRavitaillementByVehiculeCurrentMonth/>
+        <Grid item  lg={6} md={6} sm={12} xl={6} xs={12}>
+           <Typography variant="h6"style={{ color:'green'}}>
+             Mois en Cours
+           </Typography>
+           <NombreQuantiteRavitaillementByVehiculeCurrentMonth/>
         </Grid>
-          <Grid
-          item
-          lg={3}
-          md={3}
-          sm={6}
-          xl={3}
-          xs={12}
-        >
+        <Grid item lg={3} md={3} sm={6} xl={3} xs={12}>
           <TotalVehiculeReportLastMonth/>
         </Grid>
-        <Grid
-          item
-          lg={3}
-          md={3}
-          sm={6}
-          xl={3}
-          xs={12}
-        >
+        <Grid item lg={3} md={3} sm={6} xl={3} xs={12}>
           <TotalQteFuelReportLastMonth/>
         </Grid>
-        
-        <Grid
-          item
-          lg={3}
-          md={3}
-          sm={6}
-          xl={3}
-          xs={12}
-        >
-         
+        <Grid item lg={3} md={3} sm={6} xl={3} xs={12}>
           <TotalVehiculeReportCurrentMonth/>
         </Grid>
-        <Grid
-          item
-          lg={3}
-          md={3}
-          sm={6}
-          xl={3}
-          xs={12}
+        <Grid item lg={3} md={3} sm={6} xl={3} xs={12}
         >
           <TotalQteFuelReportCurrentMonth/>
         </Grid>
        
-        <Grid
-          item
-          lg={12}
-          md={12}
-          sm={12}
+        <Grid item lg={12} md={12}
+sm={12}
           xl={3}
           xs={12}
         >

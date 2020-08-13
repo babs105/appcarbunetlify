@@ -9,7 +9,7 @@ class App extends Component {
 	render() {
 	
 		return (
-		    <div>
+		    <div style={{marginBottom:"50px"}}>
 			<AppRouter/>
            </div>	
 		);

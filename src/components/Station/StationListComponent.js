@@ -2,7 +2,7 @@ import Button from '@material-ui/core/Button';
 import CreateIcon from '@material-ui/icons/Create';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Typography from '@material-ui/core/Typography';
-
+import {Link} from 'react-router-dom';
 import React from 'react';  
 import { makeStyles } from '@material-ui/core/styles';  
 import Paper from '@material-ui/core/Paper';  
@@ -52,14 +52,14 @@ export default function MatPaginationTable() {
   };
   const addStation=() =>{
     window.localStorage.removeItem("stationName");
-    history.push('/app/add-station');
+    
 }
 let i=0;
   
   return (  
       <div>
     <Typography variant="h4"  style={style}>Liste Stations</Typography>
-    <Button variant="contained" color="primary" onClick={addStation}>
+    <Button variant="contained"  component={Link} to="/app/add-station" color="primary" onClick={addStation}>
          Ajouter Station
    </Button>
     <Paper  style={{marginTop:'20px'}}className={classes.root}>  

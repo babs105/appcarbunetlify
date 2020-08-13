@@ -14,8 +14,9 @@ import EditCuve  from'../components/Cuve/CuveEditComponent';
 
 import VehiculeList from '../components/Vehicule/VehiculeListComponent' ;
 import AddVehicule  from'../components/Vehicule/VehiculeAddComponent';
+import Ravitaillements from '../components/Ravitaillement/RavitayListComponent';
+import Soutirement from '../components/Ravitaillement/SoutirementComponent';
 
-import RavitaillementList from '../components/Ravitaillement/RavitayListComponent' ;
 import AddRavitaillement from '../components/Ravitaillement/RavitaillementAddComponent' ;
 import EditRavitaillement from '../components/Ravitaillement/RavitaillementEditComponent';
 
@@ -32,7 +33,7 @@ import ListRajout from '../components/Rajout/RajoutListComponent';
 
 const PrivateRoutes = () => (
 	<Fragment>
-	 <NavBar/> 
+	 <NavBar/>  
 	<Container>
 		<Switch>
 			<Route path="/app/users" exact component={UserList} />
@@ -49,21 +50,16 @@ const PrivateRoutes = () => (
 			<Route path="/app/vehicule" exact component={VehiculeList} />
 			<Route path="/app/add-vehicule" exact component={AddVehicule} />
 
-			<Route path="/app/ravitaillement" exact component={RavitaillementList} />
+			<Route path="/app/ravitaillement" exact component={Ravitaillements}/>
 			<Route path="/app/ravitaillement-vehicule" exact component={AddRavitaillement} />
 			<Route path="/app/edit-ravitaillement" exact component={EditRavitaillement} />
-
+            <Route path="/app/soutirement-vehicule" exact component={Soutirement} />
 
 			<Route path="/app/station" exact component={StationList} />
 			<Route path="/app/add-station" exact component={AddStaton} />
 
 			<Route path="/app/add-rajout" exact component={AddRajout} />
 			<Route path="/app/rajout" exact component={ListRajout} /> 
-
-
-			
-			
-
 			<Route component={NotFound} />
 		</Switch>
 	</Container>

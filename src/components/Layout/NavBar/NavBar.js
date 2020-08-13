@@ -20,8 +20,9 @@ import EvStationIcon from '@material-ui/icons/EvStation';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import {history} from '../../../routage/ExtBrowserRouter';
 import {userService} from '../../../service/userService';
-import logo from '../../../../src/static/images/route.png';
+import logo from '../../../../src/static/images/logoSastrans.png';
 import Drawer from '@material-ui/core/Drawer';
+import {Link} from 'react-router-dom';
 
 const drawerWidth = 225;
 const styles = theme => ({
@@ -54,6 +55,14 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing(3),
   },
+  avatar:{
+    height:"5rem",
+    width :"8rem"
+  },
+  menu: {
+    marginLeft:"auto",
+    marginRight:"3rem"
+  }
  
   
 });
@@ -122,7 +131,7 @@ goToLogout = () => {
    this.setState({user:''});
    window.localStorage.removeItem('idUser');
    console.log('DECONNEXION');
-  history.push('/');
+  
 
 }
   
@@ -131,29 +140,33 @@ goToLogout = () => {
     const { classes, theme } = this.props;
     const admin = (
         <div>
-        <Button color="inherit" onClick={this.goToDashboard}>
+        {/* <Button color="inherit" onClick={this.goToDashboard}>
+            <DashboardIcon/>Tableau de bord
+        </Button> */}
+        <Button color="inherit" component={Link} to="/app/dashboard">
             <DashboardIcon/>Tableau de bord
         </Button>
-        <Button color="inherit"  onClick={this.goToUsers}>
+        <Button color="inherit"  
+        component={Link} to="/app/users">
              <PeopleAltIcon/>Utilisateurs
         </Button>
-        <Button color="inherit" onClick={this.goToStation}> 
+        <Button color="inherit"component={Link} to="/app/station">  
             <EvStationIcon/>Station
         </Button>
-        <Button color="inherit" onClick={this.goToCuve}>
+        <Button color="inherit" component={Link} to="/app/cuve">
             <LocalShippingIcon/>Cuve
         </Button>
 
-        <Button color="inherit" onClick={this.goToRajoutCuve}>
+        <Button color="inherit" component={Link} to="/app/rajout">
             <AddCircleIcon/>Rajout Cuve
         </Button>
-        <Button color="inherit" onClick={this.goToVehecule}>
+        <Button color="inherit" component={Link} to="/app/vehicule">
              <DriveEtaIcon/> Vehicule
        </Button> 
-        <Button color="inherit" onClick={this.goToRavi}>
+        <Button color="inherit" component={Link} to="/app/ravitaillement">
             <LocalGasStationIcon/>Ravitaillement
         </Button>
-        <Button color="inherit" onClick={this.goToLogout}>
+        <Button color="inherit"  component={Link} to="/" onClick={this.goToLogout}>
              <ExitToAppIcon/>
              Logout
              </Button>
@@ -164,74 +177,58 @@ goToLogout = () => {
 
     const agent =(
         <div>
-                                  <Button color="inherit" href="/app/dashboard">
-                                      <DashboardIcon/>Dashboard
-                                  </Button>
-                                  
-                                  <Button color="inherit"  href="/app/cuve">
-                                      <LocalShippingIcon/>Cuve
-                                  </Button>
+        <Button color="inherit" component={Link} to="/app/dashboard">
+            <DashboardIcon/>Tableau de bord
+        </Button>
+        <Button color="inherit" component={Link} to="/app/cuve">
+            <LocalShippingIcon/>Cuve
+        </Button>
 
-                                  <Button color="inherit" href="/app/rajout">
-                                      <LocalGasStationIcon/>Rajout Cuve
-                                  </Button>
+        <Button color="inherit" component={Link} to="/app/rajout">
+            <AddCircleIcon/>Rajout Cuve
+        </Button>
                                   
-                                  <Button color="inherit" href="/app/ravitaillement">
-                                      <LocalGasStationIcon/>Ravitaillement
-                                  </Button>
-                                  <Button color="inherit" onClick={this.goToLogout}>
-                                      <ExitToAppIcon/>
-                                      Logout
-                              </Button>
-                       </div>
+        <Button color="inherit" component={Link} to="/app/ravitaillement">
+            <LocalGasStationIcon/>Ravitaillement
+        </Button>
+        <Button color="inherit"  component={Link} to="/" onClick={this.goToLogout}>
+             <ExitToAppIcon/>
+             Logout
+        </Button>
+    </div>
 
     );
 
     return (
-        <div >
-        <AppBar  position="static" style={{marginBottom:'30px'}}>
-                <Toolbar>
-                <IconButton
-                    color="inherit"
-                    edge="start"
-                    aria-label="Open drawer"
-                    onClick={this.handleDrawerToggle}
-                    className={classes.navIconHide}
-                    >
-                  <MenuIcon />
-                </IconButton>
-                    <Avatar src={logo}/>
-                    <Typography variant="h6"  style={{paddingRight:'60px'}}>
-                        SASTRANS
-                    </Typography>
-                    <Hidden smDown implementation="css">
-        
-         {this.state.user.role === "Admin"
-                     ?(
-                    <div>
-                     {admin}
-                    </div>
+        <React.Fragment >
+        <AppBar  position="fixed" >
+            <Toolbar disableGutters >
+                <img alt="logo company" src={logo} className={classes.avatar}/>
+                <div className={classes.menu}>
+                  <Hidden smDown implementation="css" >
+                      {this.state.user.role === "Admin"
+                       ?(
+                      <div >
+                         {admin}
+                       </div>
                       )
                       :this.state.user.role === "Agent"
                       ?(
-                        <div>
+                        <div className={classes.menu}>
                          {agent}
                        </div>
                           
                        ):null
-                  }
-       
-          </Hidden>
-                </Toolbar>
-            </AppBar>
-            <Hidden mdUp>
+                     }
+                </Hidden> 
+                  <Hidden mdUp className={classes.menu }>
             <Drawer
-            variant="temporary"
-            anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-            open={this.state.mobileOpen}
-            onClose={this.handleDrawerToggle}
-            classes={{
-              paper: classes.drawerPaper,
+                    variant="temporary"
+                    anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+                    open={this.state.mobileOpen}
+                    onClose={this.handleDrawerToggle}
+                    classes={{
+                    paper: classes.drawerPaper,
             }}
             ModalProps={{
               keepMounted: true, // Better open performance on mobile.
@@ -298,9 +295,22 @@ goToLogout = () => {
                          
                 }
             </div>
-                 </Drawer>
+          </Drawer>
          </Hidden>
-        </div>
+         </div>
+           <IconButton
+                    color="inherit"
+                    edge="start"
+                    aria-label="Open drawer"
+                    onClick={this.handleDrawerToggle}
+                    className={classes.navIconHide}
+                    >
+                  <MenuIcon />
+                </IconButton>
+           </Toolbar>
+         </AppBar>
+         <div style={{marginBottom:'130px'}}></div>
+        </React.Fragment>
     );
 }
 }

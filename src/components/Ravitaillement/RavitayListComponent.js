@@ -1,17 +1,15 @@
+import React from 'react';  
 import Button from '@material-ui/core/Button';
 import CreateIcon from '@material-ui/icons/Create';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Typography from '@material-ui/core/Typography';
-
-import React from 'react';  
 import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
-
+import {Link} from 'react-router-dom';
 import { Grid,TextField } from '@material-ui/core'; 
 import { makeStyles } from '@material-ui/core/styles';  
 import Paper from '@material-ui/core/Paper';  
-import Fab from '@material-ui/core/Fab';
 import Table from '@material-ui/core/Table';  
 import TableBody from '@material-ui/core/TableBody';  
 import TableCell from '@material-ui/core/TableCell';  
@@ -36,7 +34,7 @@ const style ={
     display: 'flex',
     justifyContent: 'center'
 }
-export default function MatPaginationTable() {  
+const RavitayListComponent = ()=> {  
   const classes = useStyles();  
   const [page, setPage] = React.useState(0);  
   const [data, setData] = useState([]);  
@@ -87,11 +85,15 @@ export default function MatPaginationTable() {
 
    const addVehicule =() =>{
     window.localStorage.removeItem("immatricule");
-    history.push('/app/ravitaillement-vehicule');
+    
+  }
+  const soutirerVehicule =() =>{
+    window.localStorage.removeItem("immatricule");
+    
   }
   const editRavitaillement = (id) =>{
   window.localStorage.setItem("IdRavitay", id);
-  history.push('/app/edit-ravitaillement');
+  
  }
 let i=0;
   
@@ -99,10 +101,20 @@ let i=0;
    
       <div>
     <Typography variant="h4"  style={style}>Liste Ravitaillements</Typography>
-
-    <Button variant="contained" color="primary" onClick={addVehicule}> 
+<Grid container justify ="space-between">
+  <Grid item >
+  <Button variant="contained" component={Link} to="/app/ravitaillement-vehicule" color="primary" onClick={addVehicule}> 
          Ravitailler Véhicule
    </Button>
+  </Grid>
+  <Grid item>
+  <Button variant="contained" color="secondary"  component={Link} to="/app/soutirement-vehicule" onClick={soutirerVehicule}> 
+         Soutirer Véhicule
+   </Button>
+    </Grid>
+</Grid>
+ 
+   
    <Grid container alignItems="center" justify="center" >
    <Paper>
    <TextField style={{padding: 24}}
@@ -166,7 +178,7 @@ let i=0;
                 <TableCell align="center">{row.chauffeur}</TableCell>
                 
                 <TableCell align="right" onClick={() => editRavitaillement(row.id)}><CreateIcon /></TableCell>
-                <TableCell align="right" onClick={() => this.deleteVehicule(row.immatricule)}><DeleteIcon /></TableCell> 
+                <TableCell align="right" onClick={() => {}}><DeleteIcon /></TableCell> 
             </TableRow>
                  
               );  
@@ -189,6 +201,7 @@ let i=0;
     </div>
   );  
 } 
+export default RavitayListComponent;
 
 
     

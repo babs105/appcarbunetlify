@@ -188,16 +188,19 @@ class VehiculeAddComponent extends React.Component {
                                                 value={"patrouille"}>Patrouille
                                             </MenuItem>
                                             <MenuItem
-                                                value={"Remorque"}>Remorque
+                                                value={"remorque"}>Remorque
                                             </MenuItem>
                                             <MenuItem
-                                                value={"Passage"}>Passage
+                                                value={"passage"}>Passage
                                             </MenuItem>
                                             <MenuItem
                                                 value={"coordination"}>Coordination
                                             </MenuItem>
                                             <MenuItem
                                                 value={"staff"}>Staff
+                                            </MenuItem>
+                                            <MenuItem
+                                                value={"viabilite"}>Viabilite
                                             </MenuItem>
                                             <MenuItem
                                                 value={"autres"}>Autres

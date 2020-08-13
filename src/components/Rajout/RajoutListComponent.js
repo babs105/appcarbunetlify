@@ -1,9 +1,11 @@
+import React from 'react'; 
+import {Link} from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import CreateIcon from '@material-ui/icons/Create';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Typography from '@material-ui/core/Typography';
 
-import React from 'react';  
+ 
 import { makeStyles } from '@material-ui/core/styles';  
 import Paper from '@material-ui/core/Paper';  
 import Table from '@material-ui/core/Table';  
@@ -52,14 +54,14 @@ export default function MatPaginationTable() {
   };
   const rajouterCuve=() =>{
     window.localStorage.removeItem("id");
-    history.push('/app/add-rajout');
+   
 }
 let i=0;
   
   return (  
       <div>
     <Typography variant="h4"  style={style}>Liste des Rajout Cuve</Typography>
-    <Button variant="contained" color="primary" onClick={rajouterCuve}>
+    <Button variant="contained"  component ={Link} to="/app/add-rajout" color="primary" onClick={rajouterCuve}>
          Rajout Cuve
    </Button>
     <Paper  style={{marginTop:'20px'}}className={classes.root}>  

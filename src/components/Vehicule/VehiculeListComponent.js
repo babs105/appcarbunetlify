@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -62,7 +63,7 @@ class VehiculeListComponent extends Component {
 
     addVehicule=() =>{
         window.localStorage.removeItem("immatricule");
-        this.props.history.push('/app/add-vehicule');
+      
     }
 render(){
     const { classes } = this.props;
@@ -70,7 +71,7 @@ return(
     
 <div>
 <Typography variant="h4"  style={style}>Liste des Véhicules</Typography>
-<Button variant="contained" color="primary" onClick={() => this.addVehicule()}>
+<Button variant="contained" component={Link} to="/app/add-vehicule" color="primary" onClick={() => this.addVehicule()}>
       Ajouter Véhicule
 </Button>
 

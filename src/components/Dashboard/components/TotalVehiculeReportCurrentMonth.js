@@ -73,7 +73,7 @@ let i=0;
               gutterBottom
               variant="body2"
             >
-             Nombre de Ravitaillment
+             Nombre d'Opérations
             </Typography>
             {dataReport.map(row =>{
              return( 

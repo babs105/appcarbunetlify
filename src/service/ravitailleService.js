@@ -9,12 +9,18 @@ export const ravitailleService = {
   searchRavitaillementByImmatricule,
   deleteCuveByCuveName,
   getAllOperationsCuveInPreviousMonth,
-  getAllOperationsCuveInCurrentMonth
+  getAllOperationsCuveInCurrentMonth,
+  soutirerVehicule
 };
 function ravitaillerVehicule(ravitaille) {
   
   return axios.post('/operationsCuve/ravitaillerVehicule',ravitaille).then(handleRegisterResponse)
     .then(ravitaille => ravitaille);
+}
+function soutirerVehicule(soutirement) {
+  
+  return axios.post('/operationsCuve/soutirerVehicule',soutirement).then(handleRegisterResponse)
+    .then(soutirement => soutirement);
 }
 function createOperation(ravitaille) {
   

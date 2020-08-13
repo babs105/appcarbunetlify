@@ -1,14 +1,14 @@
-import React, { Component } from 'react'
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { Paper, Grid,withStyles} from '@material-ui/core';
+import {vehiculeService} from '../../service/vehiculeService';
 import {ravitailleService} from '../../service/ravitailleService';
+import { Paper, withStyles, Grid, TextField, Button,Select,MenuItem,InputLabel,FormControl} from '@material-ui/core';
+
 const styles = theme => ({
     margin: {
         margin: theme.spacing(2) ,
@@ -26,76 +26,73 @@ const styles = theme => ({
         marginTop: theme.spacing(2),
       }
 });
-class RavitaillementEditComponent extends Component {
-
+class SoutirementComponent extends React.Component {
     constructor(props){
         super(props);
         this.state ={
-            id: '',
-            immatricule:'',
-            dateRavitaillement:'',
-            kilometrageCurrent: '',
-            quantityRavitaillement:'',
-            quantityCurrentCuve:'',
-            statut:'',
+            vehicules:[],
+            immatricules:'',
+            dateRavitay:"",
+            kilometrage: '',
             chauffeur:'',
+            quantityRavitay:'',
             alertOpen:false,
-            message: null
+            message: null,
+            idUser:''
         }
         
     }
-
     componentDidMount() {
-        this.loadRavitaillement();
+           this.reloadVehiculeList();
+           this.setState(
+               {idUser : window.localStorage.getItem('idUser')}
+               );
+           
+
     }
 
-    loadRavitaillement = () => {
-        ravitailleService.getRavitaillementById(window.localStorage.getItem("IdRavitay"))
-            .then((res) => {
-                let ravitaillement = res;
-                this.setState({
-                id: ravitaillement.id,
-                immatricule: ravitaillement.immatricule,
-                dateRavitaillement: ravitaillement.dateRavitaillement,
-                kilometrageCurrent: ravitaillement.kilometrageCurrent,
-                quantityRavitaillement: ravitaillement.quantityRavitaillement,
-                quantityCurrentCuve: ravitaillement.quantityCurrentCuve,
-                statut:ravitaillement.statut,
-                chauffeur:ravitaillement.chauffeur
-
-                })
+    reloadVehiculeList = () => {
+        vehiculeService.getAllVehicules()
+            .then(res => {
+                this.setState({vehicules:res});
+                console.log("data",this.state.vehicules);
+            })  
+         
+            
+    }
+    ravitaillerVehicule = (e) => {
+        e.preventDefault();
+        let soutirement = 
+           {
+            dateRavitay: this.state.dateRavitay,
+            immatricule: this.state.immatricule,
+            quantityRavitay: this.state.quantityRavitay,
+            kilometrage: this.state.kilometrage,
+            chauffeur: this.state.chauffeur,
+            idUser:this.state.idUser
+            };
+        ravitailleService.soutirerVehicule(soutirement)
+            .then(res => {
+                if(res.error){
+                this.setState({message : 'Soutirement reussi'});
+                this.setState({alertOpen : true});
+            }else {
+                    this.setState({message : 'Soutirement échoué'});
+                    this.setState({alertOpen : true});
+            }
+                // 
+                
             });
+      //  console.log("ravitaille",ravitaille);
+       
     }
     handleClose= () => {
-        this.setState({ alertOpen:false})
-        this.props.history.push('/app/ravitaillement');
-    
-  };
+            this.setState({ alertOpen:false})
+            this.props.history.push('/app/ravitaillement');
+        
+      };
 
-    onChange = (e) =>
-    this.setState({ [e.target.name]: e.target.value });
-
-saveRavitaillement = (e) => {
-    e.preventDefault();
-    let ravitaillement = {
-        dateRavitaillement: this.state.dateRavitaillement,
-        id: this.state.id, 
-        immatricule: this.state.immatricule,
-        kilometrageCurrent: this.state.kilometrageCurrent,
-        quantityRavitaillement:this.state.quantityRavitaillement, 
-        quantityCurrentCuve: this.state.quantityCurrentCuve,
-        statut:this.state.statut,
-        chauffeur:this.state.chauffeur,
-
-    };
-    ravitailleService.createOperation(ravitaillement)
-        .then(res => {
-            this.setState({message :' Ravitaillement modifié'});
-            this.setState({alertOpen : true});
-            
-        });
-    
-}
+    onChange = (e) =>this.setState({ [e.target.name]: e.target.value });
 
     render() {
         const { classes } = this.props;
@@ -105,11 +102,11 @@ saveRavitaillement = (e) => {
             <Paper className={classes.paper }>
                 <div className={classes.margin}>
                 <form >
-                <Typography variant="h4" style={{ display: 'flex',justifyContent:'center' ,marginBottom:'30px'}} >Modification Operation</Typography>
+                <Typography variant="h4" style={{ display: 'flex',justifyContent:'center' ,marginBottom:'30px'}} >Soutirer Véhicule</Typography>
                     <Grid container spacing={4} alignItems="center">
                        <Grid item md={12} sm={12} xs={12}> 
-                          <TextField id="immatricule" variant="outlined" label="immatricule" type="text" name="immatricule" value={this.state.immatricule} onChange={this.onChange} fullWidth  disabled required />
-                            {/* <FormControl  className={classes.formControl}>
+                         {/* <TextField id="cuvename" variant="outlined" label="Imma" type="text" name="cuveName" value={this.state.cuveName} onChange={this.onChange} fullWidth  autoFocus disabled required /> */}
+                            <FormControl  className={classes.formControl}>
                                 <InputLabel   id='immatriculeId'>Immatricule</InputLabel>
                                 <Select  
                                     name='immatricule'
@@ -125,38 +122,51 @@ saveRavitaillement = (e) => {
                                 ))
                             }
                             </Select>
-                        </FormControl>  */}
+                        </FormControl> 
                     </Grid> 
                         <Grid item md={12} sm={12} xs={12}>
-                        <TextField id="kilometrage" variant="outlined" label="Kilometrage " type="number" name="kilometrageCurrent" value={this.state.kilometrageCurrent} onChange={this.onChange} fullWidth  required />
+                        <TextField id="kilometrage" variant="outlined" label="Kilometrage " type="number" name="kilometrage" value={this.state.kilometrage} onChange={this.onChange} fullWidth  required />
                         </Grid>
                     
                         <Grid item md={12} sm={12} xs={12}>
-                        <TextField id="quantityRavitay" variant="outlined" label="Quantité Ravitaillée" type="number" name="quantityRavitaillement" value={this.state.quantityRavitaillement} onChange={this.onChange} fullWidth  required />
+                        <TextField id="quantityRavitay" 
+                                     variant="outlined"
+                                     label="Quantité Soutirée" 
+                                     type="number"
+                                    name="quantityRavitay" 
+                                    value={this.state.quantityRavitay} 
+                                    onChange={this.onChange} 
+                                    fullWidth required />
                         </Grid>
                         <Grid item md={12} sm={12} xs={12}>
-                        <TextField id="quantityCurrentCuve" variant="outlined" label="Quantité Cuve " type="number" name="quantityCurrentCuve" value={this.state.quantityCurrentCuve} onChange={this.onChange} fullWidth disabled required />
+                        <TextField id="chauffeur" 
+                                    variant="outlined"
+                                    label="Prenom Nom Chauffeur" 
+                                    type="text"
+                                    name="chauffeur" 
+                                    value={this.state.chauffeur} 
+                                    onChange={this.onChange} 
+                                    fullWidth required />
                         </Grid>
                         <Grid item md={12} sm={12} xs={12}>
-                        {/* <TextField
+                        <TextField
                                 id="dateRavitay"
                                 variant="outlined"
-                                label="Date Ravitaillement"
-                                name="dateRavitaillement"
-                                type="datetime-local"
-                                value={this.state.dateRavitaillement}
+                                label="Date Soutirement"
+                                name="dateRavitay"
+                                 type="datetime-local"
+                                value={this.state.dateRavitay}
                                 onChange={this.onChange}
                                 className={classes.textField}
                                 InputLabelProps={{
                                 shrink: true,
                                 }}
-                                disabled
-                            /> */}
+                            />
                     </Grid>
                     </Grid> 
                     <Grid container justify="center" spacing={3} alignItems="center">
                         <Grid item md={6} sm={4} xs={12}>
-                          <Button variant="contained"  color="primary" fullWidth onClick={this.saveRavitaillement} >Valider</Button>
+                          <Button variant="contained"  color="primary" fullWidth onClick={this.ravitaillerVehicule} >Valider</Button>
                        </Grid>
                     </Grid>
                   
@@ -166,6 +176,7 @@ saveRavitaillement = (e) => {
                 </div>
             </Paper>
             </Grid>
+            
             <Dialog
                     open={this.state.alertOpen}
                     onClose={this.handleClose}
@@ -185,13 +196,8 @@ saveRavitaillement = (e) => {
         </DialogActions>
       </Dialog>
             </Grid>
+            
         );
     }
 }
-
-const style ={
-    display: 'flex',
-    justifyContent: 'center'
-}
-
-export default withStyles(styles) (RavitaillementEditComponent);
+export default withStyles(styles)(SoutirementComponent);

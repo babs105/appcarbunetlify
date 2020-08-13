@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -62,7 +63,7 @@ editUser = (id) =>{
 
 addUser = () =>{
         window.localStorage.removeItem("userId");
-        this.props.history.push('/app/add-user');
+        
     }
 render(){
     const { classes } = this.props;
@@ -70,7 +71,7 @@ return(
 
 <div>
 <Typography variant="h4"  style={style}>Liste Utilisateur</Typography>
-<Button variant="contained" style={{marginBottom:'20px'}} color="primary" onClick={() => this.addUser()}>
+<Button variant="contained" component={Link} to="/app/add-user" style={{marginBottom:'20px'}} color="primary" onClick={() => this.addUser()}>
         Ajouter Utilisateur
 </Button>
 

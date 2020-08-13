@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Paper,withStyles} from '@material-ui/core';  
+import {Link} from 'react-router-dom';
 import Table from '@material-ui/core/Table';
 import TableContainer from '@material-ui/core/TableContainer';  
 import TableBody from '@material-ui/core/TableBody';
@@ -63,7 +64,7 @@ class CuveListComponent extends Component {
 
     addCuve=() =>{
         window.localStorage.removeItem("cuveId");
-        this.props.history.push('/app/add-cuve');
+        
     }
 render(){
     const { classes } = this.props;
@@ -71,7 +72,7 @@ render(){
 return(
 <div>
 <Typography variant="h4"  style={style}>Etat Cuve </Typography>
-<Button variant="contained" color="primary" onClick={() => this.addCuve()}>
+<Button variant="contained" component={Link} to='/app/add-cuve' color="primary" onClick={() => this.addCuve()}>
       Créer Cuve
 </Button>
 <Paper  style={{marginTop:'20px'}}className={classes.root}>  
