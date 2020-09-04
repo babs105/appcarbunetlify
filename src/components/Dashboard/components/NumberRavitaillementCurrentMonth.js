@@ -88,7 +88,7 @@ export default function NumberRavitaillementAndTotalQteCurrentMonth(props) {
                 {/* <TableCell align="center">N°: </TableCell> */}
                 <TableCell align="center">IMMATRICULE </TableCell>
                 <TableCell align="center">QUANTITE RAVITAILLEE</TableCell>
-                <TableCell align="center">NOMBRE RAVITAILLEMENT</TableCell>
+                <TableCell align="center">NOMBRE DE RAVITAILLEMENT</TableCell>
                 {/* <TableCell align="center">DISTANCE PARCOURUE</TableCell> */}
               </TableRow>
             </TableHead>
