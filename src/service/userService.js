@@ -1,6 +1,7 @@
-import axios from '../axios/axios';
-import {deleteAllCookies} from '../utils/Cookie';
-import history from '../routage/ExtBrowserRouter';
+import axios from "../axios/axios";
+import { deleteAllCookies } from "../utils/Cookie";
+import history from "../routage/ExtBrowserRouter";
+import { authenticationHelper } from "../utils/AuthenticationHelper";
 
 export const userService = {
   login,
@@ -8,42 +9,55 @@ export const userService = {
   loginExistingUser,
   register,
   getAllUsers,
-  getUserById
+  getUserById,
 };
-
 
 function login(user) {
   // const requestOptions = user;
-  return axios.post('/users/authenticate', user).then(handleResponse)
-    .then(user => user);
+  return axios
+    .post("/users/authenticate", user)
+    .then(handleResponse)
+    .then((user) => {
+      // localStorage.setItem("token", user.sessionCookie);
+      authenticationHelper.registerSuccessfulLogin(user.sessionCookie);
+      localStorage.setItem("idUser", user.user.id);
+      return user;
+    });
 }
 
 function register(data) {
   console.log(data);
-  return axios.post('/users/create', data).then(handleRegisterResponse)
-    .then(user => user);
+  return axios
+    .post("/users/create", data)
+    .then(handleRegisterResponse)
+    .then((user) => user);
 }
 
-
 function getAllUsers() {
-    return axios.get('/users/getAllUsers').then(handleRegisterResponse)
-      .then(user => user);
-  }
-  function getUserById(userId) {
-    return axios.get('/users/getUserById/'+userId).then(handleRegisterResponse)
-      .then(user => user);
-  }
+  return axios
+    .get("/users/getAllUsers")
+    .then(handleResponse)
+    .then((user) => user);
+}
+function getUserById(userId) {
+  return axios
+    .get("/users/getUserById/" + userId)
+    .then(handleResponse)
+    .then((user) => user);
+}
 
 function loginExistingUser(cookie) {
-  const headers = { 'x-authenticate-user': cookie };
+  const headers = { "x-authenticate-user": cookie };
   const requestOptions = { headers };
-  return axios.get('/users/loggedUser', requestOptions).then(handleResponse)
-    .then(user => user);
+  return axios
+    .get("/users/loggedUser", requestOptions)
+    .then(handleResponse)
+    .then((user) => user);
 }
 
 function logout() {
-  deleteAllCookies();
-  
+  authenticationHelper.logout();
+  localStorage.removeItem("idUser");
 }
 
 function handleResponse(response) {
@@ -67,7 +81,7 @@ function handleRegisterResponse(response) {
   const { data } = response;
   if (response.status === 401) {
     const error = (data && data.message) || response.statusText;
-    console.log('handleRegisterResponse => error');
+    console.log("handleRegisterResponse => error");
     console.log(error);
     return Promise.reject(error);
   }
