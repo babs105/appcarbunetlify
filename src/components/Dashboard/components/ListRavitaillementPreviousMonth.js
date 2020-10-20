@@ -15,6 +15,7 @@ import Typography from "@material-ui/core/Typography";
 import { ravitailleService } from "../../../service/ravitailleService";
 import { ExportXlsx } from "../../Ravitaillement/ExportXlsx";
 import Loader from "../../loader/Loader";
+import ReactHTMLTableToExcel from "react-html-table-to-excel";
 import { useState, useEffect } from "react";
 
 const useStyles = makeStyles({
@@ -106,7 +107,7 @@ export default function MatPaginationTable() {
         </Grid>
 
         <TableContainer className={classes.container}>
-          <Table stickyHeader aria-label="sticky table">
+          <Table id="emp" stickyHeader aria-label="sticky table">
             <TableHead>
               <TableRow>
                 <TableCell align="center">N°: </TableCell>
@@ -150,9 +151,17 @@ export default function MatPaginationTable() {
                 })}
             </TableBody>
           </Table>
+          <button>
+            <ReactHTMLTableToExcel
+              table="emp"
+              filename="ReportExcel"
+              sheet="Sheet"
+              buttonText="Export excel"
+            />
+          </button>
         </TableContainer>
         <TablePagination
-          rowsPerPageOptions={[5, 10, 15]}
+          rowsPerPageOptions={[5, 10, 15, 500]}
           component="div"
           count={data.length}
           rowsPerPage={rowsPerPage}
