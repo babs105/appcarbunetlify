@@ -115,6 +115,7 @@ export default function MatPaginationTable() {
                 <TableCell align="center">QUANTITE RAVITAILLEE</TableCell>
                 {/* <TableCell align="center">ETAT CUVE </TableCell> */}
                 <TableCell align="center">IMMATRICULE</TableCell>
+                <TableCell align="center">CATEGORIE</TableCell>
                 <TableCell align="center">KILOMETRAGE </TableCell>
                 <TableCell align="center">DIST.PARCOURUE</TableCell>
                 <TableCell align="center">STATUT</TableCell>
@@ -136,6 +137,7 @@ export default function MatPaginationTable() {
                       </TableCell>
                       {/* <TableCell align="center">{row.quantityCurrentCuve}</TableCell> */}
                       <TableCell align="center">{row.immatricule}</TableCell>
+                      <TableCell align="center">{row.categorie}</TableCell>
 
                       <TableCell align="center">
                         {row.kilometrageCurrent}

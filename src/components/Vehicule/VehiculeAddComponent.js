@@ -57,6 +57,7 @@ class VehiculeAddComponent extends React.Component {
       kilometrageInitial: "",
       capacityReservoir: "",
       statut: "",
+      categorie: "",
       alertOpen: false,
       selected: "IN",
       imgPreview: null,
@@ -84,6 +85,7 @@ class VehiculeAddComponent extends React.Component {
       immatricule: this.state.immatricule,
       capacityReservoir: this.state.capacityReservoir,
       statut: this.state.statut,
+      categorie: this.state.categorie,
       kilometrageInitial: this.state.kilometrageInitial,
       // ,idVehicule:this.state.idVehicule
     };
@@ -219,6 +221,25 @@ class VehiculeAddComponent extends React.Component {
                   <MenuItem value={"coordination"}>Coordination</MenuItem>
                   <MenuItem value={"staff"}>Staff</MenuItem>
                   <MenuItem value={"viabilite"}>Viabilite</MenuItem>
+                  <MenuItem value={"autres"}>Autres</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item md={12} sm={12} xs={12}>
+              <FormControl className={classes.formControl}>
+                <InputLabel id="roleId">
+                  {""}
+                  Categorie
+                </InputLabel>
+                <Select
+                  name="categorie"
+                  id="categorie"
+                  variant="outlined"
+                  value={this.state.categorie}
+                  onChange={this.onChange}
+                >
+                  <MenuItem value="VL">VL</MenuItem>
+                  <MenuItem value="PL">PL</MenuItem>
                   <MenuItem value={"autres"}>Autres</MenuItem>
                 </Select>
               </FormControl>

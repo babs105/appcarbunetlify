@@ -25,7 +25,6 @@ import LocalShippingIcon from "@material-ui/icons/LocalShipping";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import EvStationIcon from "@material-ui/icons/EvStation";
 import DashboardIcon from "@material-ui/icons/Dashboard";
-import { history } from "../../../routage/ExtBrowserRouter";
 import { userService } from "../../../service/userService";
 import logo from "../../../../src/static/images/logoSastrans.png";
 import Drawer from "@material-ui/core/Drawer";

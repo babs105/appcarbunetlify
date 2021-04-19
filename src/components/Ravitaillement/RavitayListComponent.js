@@ -148,6 +148,7 @@ const RavitayListComponent = () => {
                 <TableCell align="center">QUANTITE RAVITAILLEE</TableCell>
                 <TableCell align="center">QTE CUVE</TableCell>
                 <TableCell align="center">IMMATRICULE</TableCell>
+                <TableCell align="center">CATEGORIE</TableCell>
                 <TableCell align="center">KILOMETRAGE</TableCell>
                 <TableCell align="center">DIST.PARCOURUE</TableCell>
                 <TableCell align="center">CONDUCTEUR</TableCell>
@@ -183,6 +184,7 @@ const RavitayListComponent = () => {
                           {row.quantityCurrentCuve}
                         </TableCell>
                         <TableCell align="center">{row.immatricule}</TableCell>
+                        <TableCell align="center">{row.categorie}</TableCell>
                         <TableCell align="center">
                           {row.kilometrageCurrent}
                         </TableCell>

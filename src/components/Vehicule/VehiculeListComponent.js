@@ -85,6 +85,7 @@ class VehiculeListComponent extends Component {
                 <TableRow>
                   <TableCell align="center">Immatricule </TableCell>
                   <TableCell align="center">Statut </TableCell>
+                  <TableCell align="center">Categorie </TableCell>
                   <TableCell align="center">kilometrage</TableCell>
                   <TableCell align="center">Capacité Réservoir</TableCell>
                   <TableCell align="center">Date</TableCell>
@@ -108,6 +109,7 @@ class VehiculeListComponent extends Component {
                           {row.immatricule}
                         </TableCell>
                         <TableCell align="center">{row.statut}</TableCell>
+                        <TableCell align="center">{row.categorie}</TableCell>
                         <TableCell align="center">
                           {row.kilometrageCurrent}
                         </TableCell>
